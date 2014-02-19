@@ -18,7 +18,7 @@ namespace Analyser
             openFileDialog1.Title = "Load saved game state.";
             openFileDialog1.FileName = "";
 
-            openFileDialog1.Filter = "GOL Files|*.gol";
+            //openFileDialog1.Filter = "GOL Files|*.hrm *.zip";
 
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
