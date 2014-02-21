@@ -11,24 +11,24 @@ namespace Analyser
 {
     internal static class FileManager
     {
+        internal static Stream stream;
+        internal static Parser parser;
 
         internal static void LoadFile(OpenFileDialog openFileDialog1)
         {
             string loadFile = "";
-            openFileDialog1.Title = "Load saved game state.";
+            openFileDialog1.Title = "Load cycle training data.";
             openFileDialog1.FileName = "";
 
-            //openFileDialog1.Filter = "GOL Files|*.hrm *.zip";
+            openFileDialog1.Filter = "HRM Files|*.hrm";
 
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
-                //BinaryFormatter bformatter = new BinaryFormatter();
-                //m_Grid = (Grid)bformatter.Deserialize(stream);
-
                 loadFile = openFileDialog1.FileName;
 
-                //Open the file written above and read values from it.
-                Stream stream = File.Open(loadFile, FileMode.Open);
+                stream = File.Open(loadFile, FileMode.Open);
+
+
                 
                 stream.Close();
 
