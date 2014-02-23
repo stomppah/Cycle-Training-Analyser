@@ -12,7 +12,8 @@ namespace Analyser
     internal static class FileManager
     {
         internal static Stream stream;
-        internal static Parser parser;
+        internal static Parser parser = new Parser();
+        internal static List<Int32[]> Stats;
 
         internal static void LoadFile(OpenFileDialog openFileDialog1)
         {
@@ -27,6 +28,8 @@ namespace Analyser
                 loadFile = openFileDialog1.FileName;
 
                 stream = File.Open(loadFile, FileMode.Open);
+
+                Stats = parser.ReadDataFromStream(stream);
 
 
                 

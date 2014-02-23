@@ -4,17 +4,18 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Analyser
 {
     internal class Parser
     {
-        internal List<string[]> hrmData = new List<string[]>();
+        internal List<Int32[]> hrmData = new List<Int32[]>();
         internal int guessMaxColumns = 10;
 
         public Parser() { }
 
-        public List<string[]> ReadDataFromStream(Stream stream)
+        public List<Int32[]> ReadDataFromStream(Stream stream)
         {
             // Read stream line by line
             string line;
@@ -24,14 +25,17 @@ namespace Analyser
                   file = new StreamReader(stream);
                   while ((line = file.ReadLine()) != null) {
 
-                      // split line into columns and stick them in the list here
-                      string[] stats = line.Split(' ');
-                      hrmData.Add(stats);
+                      // split variable space seperated text
+                      string[] tempResults = Regex.Split(line, "\\s+");
 
-                      foreach (string stat in stats) 
-                      {  
-                         Debug.WriteLine(stat);
+                      //convert it to Int32 format
+                      Int32[] stats = new Int32[tempResults.Length];
+                      for (int i = 0; i < tempResults.Length; i++ )
+                      {
+                          Int32.TryParse(tempResults[i], out stats[i]);
                       }
+
+                      hrmData.Add(stats);
                   }
                } finally {
                   if (file != null)
