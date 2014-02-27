@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Analyser
 {
-    class Interval
+    class HRMDataInterval
     {
     }
 }

@@ -13,7 +13,7 @@ namespace Analyser
     {
         internal static Stream stream;
         internal static Parser parser = new Parser();
-        internal static List<HRMData> Stats;
+        internal static List<HRMDataSet> Stats;
 
         internal static void LoadFile(OpenFileDialog openFileDialog1)
         {
