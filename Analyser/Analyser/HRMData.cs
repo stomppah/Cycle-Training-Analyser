@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Analyser
 {
-    class HRMData
+    class HRMData : IList<Interval>
     {
+        private IList<Interval> stats;
+
         #region [Params]
         private int m_version, m_montior;
         private byte m_smode;
@@ -17,5 +19,6 @@ namespace Analyser
         private TimeSpan m_timer1, m_timer2, m_timer3;
         private int m_activeLimit, m_maxHR, m_restHR, m_startDelay, m_vo2max, m_weight;
         #endregion
+
     }
 }

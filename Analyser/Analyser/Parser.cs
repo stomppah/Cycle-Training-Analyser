@@ -10,12 +10,12 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal List<Int32[]> hrmData = new List<Int32[]>();
+        internal List<HRMData> hrmData = new List<HRMData>();
         internal int guessMaxColumns = 10;
 
         public Parser() { }
 
-        public List<Int32[]> ReadDataFromStream(Stream stream)
+        public List<HRMData> ReadDataFromStream(Stream stream)
         {
             // Read stream line by line
             string line;
