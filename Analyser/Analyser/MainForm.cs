@@ -21,17 +21,6 @@ namespace Analyser
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileManager.LoadFile(OpenFileDialog);
-            List<string> list = new List<string>();
-            foreach (var item in FileManager.m_hrmDataSet)
-            {
-                string str = "";
-                for (int i = 0; i < item.Length; i++)
-                {
-                    str += item.GetValue(i).ToString() + " ";
-                }
-                list.Add(str);
-            }
-            CycleStatsListBox.DataSource = list;
         }
     }
 }
