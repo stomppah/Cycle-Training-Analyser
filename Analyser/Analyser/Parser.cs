@@ -10,12 +10,12 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal HRMDataSet m_hrmDataSet;
+        internal HRMDataList m_hrmDataSet = new HRMDataList();
         internal int guessMaxColumns = 10;
 
         public Parser() { }
 
-        public HRMDataSet ReadDataFromStream(Stream stream)
+        public HRMDataList ReadDataFromStream(Stream stream)
         {
             List<string> paramsList;
 
@@ -29,15 +29,46 @@ namespace Analyser
 
 
 
-
+                      // It's important that this 
+                      // is done in the following order.
                       //////////////////////////////////////////
                       switch (line)
                       {
                           case  "[Params]":
                               paramsList = GetParamsList(line, file);
                               break;
-                          default:
+                          case "[Note]":
+                              //TODO
+                              break;
+                          case "[IntTimes]":
+                              //TODO
+                              break;
+                          case "[IntNotes]":
+                              //TODO
+                              break;
+                          case "[ExtraData]":
+                              //TODO
+                              break;
+                          case "[Summary-123]":
+                              //TODO
+                              break;
+                          case "[Summary-TH]":
+                              //TODO
+                              break;
+                          case "[HRZones]":
+                              //TODO
+                              break;
+                          case "[SwapTimes]":
+                              //TODO
+                              break;
+                          case "[Trip]":
+                              //
+                              break;
+                          case "[HRData]":
                               ReadCoreData(line);
+                              break;
+
+                          default:
                               break;
                       }
                       //////////////////////////////////////////
@@ -84,7 +115,9 @@ namespace Analyser
                 Int32.TryParse(tempResults[i], out stats[i]);
             }
 
-            //m_hrmDataSet.Add(stats);
+            m_hrmDataSet.Add(
+                new HRMDataInterval( stats )
+                );
         }
 
     }

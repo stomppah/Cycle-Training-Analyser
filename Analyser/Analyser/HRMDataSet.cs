@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Analyser
 {
-    class HRMDataSet : IList<HRMDataInterval>
+    class HRMDataList : IList<HRMDataInterval>
     {
         private IList<HRMDataInterval> m_hrmDataIntervals;
 
@@ -20,7 +20,9 @@ namespace Analyser
         public int m_activeLimit, m_maxHR, m_restHR, m_startDelay, m_vo2max, m_weight;
         #endregion
 
-        public HRMDataSet(int version, int monitor, byte smode, DateTime date, DateTime startTime, DateTime length,
+        public HRMDataList() { }
+
+        public HRMDataList(int version, int monitor, byte smode, DateTime date, DateTime startTime, DateTime length,
                             int interval, int upper1, int lower1, int upper2, int lower2, int upper3, int lower3,
                             TimeSpan timer1, TimeSpan timer2, TimeSpan timer3, int activeLimit, int maxHR, int restHR,
                             int startDelay, int vo2max, int weight)
