@@ -22,7 +22,7 @@ namespace Analyser
         {
             FileManager.LoadFile(OpenFileDialog);
             List<string> list = new List<string>();
-            foreach (var item in FileManager.Stats)
+            foreach (var item in FileManager.m_hrmDataSet)
             {
                 string str = "";
                 for (int i = 0; i < item.Length; i++)

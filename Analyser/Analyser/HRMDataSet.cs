@@ -11,13 +11,13 @@ namespace Analyser
         private IList<HRMDataInterval> m_hrmDataIntervals;
 
         #region [Params]
-        private int m_version, m_montior;
-        private byte m_smode;
-        private DateTime m_date, m_startTime, m_length;
-        private int m_interval;
-        private int m_upper1, m_lower1, m_upper2, m_lower2, m_upper3, m_lower3;
-        private TimeSpan m_timer1, m_timer2, m_timer3;
-        private int m_activeLimit, m_maxHR, m_restHR, m_startDelay, m_vo2max, m_weight;
+        public int m_version, m_montior;
+        public byte m_smode;
+        public DateTime m_date, m_startTime, m_length;
+        public int m_interval;
+        public int m_upper1, m_lower1, m_upper2, m_lower2, m_upper3, m_lower3;
+        public TimeSpan m_timer1, m_timer2, m_timer3;
+        public int m_activeLimit, m_maxHR, m_restHR, m_startDelay, m_vo2max, m_weight;
         #endregion
 
         #region IList Interface

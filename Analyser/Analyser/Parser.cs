@@ -10,12 +10,12 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal List<HRMDataSet> hrmData = new List<HRMDataSet>();
+        internal HRMDataSet m_hrmDataSet = new HRMDataSet();
         internal int guessMaxColumns = 10;
 
         public Parser() { }
 
-        public List<HRMDataSet> ReadDataFromStream(Stream stream)
+        public HRMDataSet ReadDataFromStream(Stream stream)
         {
             // Read stream line by line
             string line;
@@ -35,7 +35,7 @@ namespace Analyser
                           Int32.TryParse(tempResults[i], out stats[i]);
                       }
 
-                      hrmData.Add(stats);
+                      m_hrmDataSet.Add(stats);
                   }
                } finally {
                   if (file != null)
@@ -43,7 +43,7 @@ namespace Analyser
                }
             }
 
-            return hrmData;
+            return m_hrmDataSet;
         }
 
     }
