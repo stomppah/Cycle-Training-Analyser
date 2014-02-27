@@ -8,7 +8,7 @@ namespace Analyser
 {
     class HRMDataSet : IList<HRMDataInterval>
     {
-        private IList<HRMDataInterval> m_hrmDataInterval;
+        private IList<HRMDataInterval> m_hrmDataIntervals;
 
         #region [Params]
         private int m_version, m_montior;
@@ -23,17 +23,17 @@ namespace Analyser
         #region IList Interface
         public int IndexOf(HRMDataInterval item)
         {
-            return this.m_hrmDataInterval.IndexOf(item);
+            return this.m_hrmDataIntervals.IndexOf(item);
         }
 
         public void Insert(int index, HRMDataInterval item)
         {
-            this.m_hrmDataInterval.Insert(index, item);
+            this.m_hrmDataIntervals.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
-            this.m_hrmDataInterval.RemoveAt(index);
+            this.m_hrmDataIntervals.RemoveAt(index);
         }
 
         public HRMDataInterval this[int index]
@@ -50,37 +50,37 @@ namespace Analyser
 
         public void Add(HRMDataInterval item)
         {
-            this.m_hrmDataInterval.Add(item);
+            this.m_hrmDataIntervals.Add(item);
         }
 
         public void Clear()
         {
-            this.m_hrmDataInterval.Clear();
+            this.m_hrmDataIntervals.Clear();
         }
 
         public bool Contains(HRMDataInterval item)
         {
-            return this.m_hrmDataInterval.Contains(item);
+            return this.m_hrmDataIntervals.Contains(item);
         }
 
         public void CopyTo(HRMDataInterval[] array, int arrayIndex)
         {
-            this.m_hrmDataInterval.CopyTo(array, arrayIndex);
+            this.m_hrmDataIntervals.CopyTo(array, arrayIndex);
         }
 
         public int Count
         {
-            get { return this.m_hrmDataInterval.Count; }
+            get { return this.m_hrmDataIntervals.Count; }
         }
 
         public bool IsReadOnly
         {
-            get { return this.m_hrmDataInterval.IsReadOnly; }
+            get { return this.m_hrmDataIntervals.IsReadOnly; }
         }
 
         public bool Remove(HRMDataInterval item)
         {
-            return this.m_hrmDataInterval.Remove(item);
+            return this.m_hrmDataIntervals.Remove(item);
         }
 
         public IEnumerator<HRMDataInterval> GetEnumerator()
