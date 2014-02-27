@@ -25,7 +25,31 @@ namespace Analyser
                             TimeSpan timer1, TimeSpan timer2, TimeSpan timer3, int activeLimit, int maxHR, int restHR,
                             int startDelay, int vo2max, int weight)
         {
+            m_version = version;
+            m_montior = monitor;
+            m_smode = smode;
+            m_date = date;
+            m_startTime = startTime;
+            m_length = length;
 
+            m_interval = interval;
+            m_upper1 = upper1;
+            m_lower1 = lower1;
+            m_upper2 = upper2;
+            m_lower2 = lower2;
+            m_upper3 = upper3;
+            m_lower3 = lower3;
+
+            m_timer1 = timer1;
+            m_timer2 = timer2;
+            m_timer3 = timer3;
+            m_activeLimit = activeLimit;
+            m_maxHR = maxHR;
+            m_restHR = restHR;
+
+            m_startDelay = startDelay;
+            m_vo2max = vo2max;
+            m_weight = weight;
         }
 
         #region IList Interface
