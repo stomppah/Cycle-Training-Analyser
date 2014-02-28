@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileManager.cs" />
-    <Compile Include="HRMData.cs" />
+    <Compile Include="HRMDataSet.cs" />
+    <Compile Include="HRMDataInterval.cs" />
+    <Compile Include="Utilities\Logger.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
