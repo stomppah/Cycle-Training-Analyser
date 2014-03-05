@@ -115,12 +115,12 @@ namespace Analyser
 
         public IEnumerator<SessionDataInterval> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.m_hrmDataIntervals.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.m_hrmDataIntervals.GetEnumerator();
         }
         #endregion
     }
