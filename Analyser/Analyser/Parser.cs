@@ -65,7 +65,7 @@ namespace Analyser
                               //
                               break;
                           case "[HRData]":
-                              ReadCoreData(line);
+                              ReadCoreData(line, file);
                               break;
 
                           default:
@@ -102,22 +102,24 @@ namespace Analyser
             return paramsList;
         }
 
-        private void ReadCoreData(string line)
+        private void ReadCoreData(string line, StreamReader file)
         {
-
-            // split variable space seperated text
-            string[] tempResults = Regex.Split(line, "\\s+");
-
-            //convert it to Int32 format
-            Int32[] stats = new Int32[tempResults.Length];
-            for (int i = 0; i < tempResults.Length; i++)
+            while ((line = file.ReadLine()) != null)
             {
-                Int32.TryParse(tempResults[i], out stats[i]);
-            }
+                // split variable space seperated text
+                string[] tempResults = Regex.Split(line, "\\s+");
 
-            m_hrmDataSet.Add(
-                new HRMDataInterval( stats )
-                );
+                //convert it to Int32 format
+                Int32[] stats = new Int32[tempResults.Length];
+                for (int i = 0; i < tempResults.Length; i++)
+                {
+                    Int32.TryParse(tempResults[i], out stats[i]);
+                }
+
+                m_hrmDataSet.Add(
+                    new HRMDataInterval(stats)
+                    );
+            }
         }
 
     }
