@@ -204,7 +204,7 @@
             this.dataViewGroupBox.Controls.Add(this.dataGridView1);
             this.dataViewGroupBox.Location = new System.Drawing.Point(217, 28);
             this.dataViewGroupBox.Name = "dataViewGroupBox";
-            this.dataViewGroupBox.Size = new System.Drawing.Size(779, 510);
+            this.dataViewGroupBox.Size = new System.Drawing.Size(779, 522);
             this.dataViewGroupBox.TabIndex = 3;
             this.dataViewGroupBox.TabStop = false;
             // 
@@ -214,7 +214,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(773, 491);
+            this.dataGridView1.Size = new System.Drawing.Size(773, 503);
             this.dataGridView1.TabIndex = 0;
             // 
             // MainForm
