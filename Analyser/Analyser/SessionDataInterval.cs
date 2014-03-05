@@ -11,6 +11,7 @@ namespace Analyser
 
         public SessionDataInterval( int[] data ) // bpm, int speed, int cadence, int altitude, int power, int powerBalance)
         {
+            // How this works needs a complete rework to account for the variability of the SMODE parameter.
             m_bpm = data[0];
             m_speed = data[1];
             m_cadence = data[2];
