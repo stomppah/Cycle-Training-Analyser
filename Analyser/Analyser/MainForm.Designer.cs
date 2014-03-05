@@ -44,9 +44,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.startTimeLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
+            this.dataViewGroupBox = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.MainMenuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.summaryGroupBox.SuspendLayout();
+            this.dataViewGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -192,11 +196,33 @@
             this.dateLabel.Size = new System.Drawing.Size(0, 13);
             this.dateLabel.TabIndex = 4;
             // 
+            // dataViewGroupBox
+            // 
+            this.dataViewGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataViewGroupBox.Controls.Add(this.dataGridView1);
+            this.dataViewGroupBox.Location = new System.Drawing.Point(217, 28);
+            this.dataViewGroupBox.Name = "dataViewGroupBox";
+            this.dataViewGroupBox.Size = new System.Drawing.Size(779, 510);
+            this.dataViewGroupBox.TabIndex = 3;
+            this.dataViewGroupBox.TabStop = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(773, 491);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 562);
+            this.Controls.Add(this.dataViewGroupBox);
             this.Controls.Add(this.summaryGroupBox);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MainMenuStrip);
@@ -208,6 +234,8 @@
             this.groupBox1.PerformLayout();
             this.summaryGroupBox.ResumeLayout(false);
             this.summaryGroupBox.PerformLayout();
+            this.dataViewGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,6 +259,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox dataViewGroupBox;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
