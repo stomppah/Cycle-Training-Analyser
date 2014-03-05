@@ -13,10 +13,10 @@ namespace Analyser
     {
         internal static Stream stream;
         internal static Parser parser = new Parser();
-        internal static HRMDataList m_hrmDataList;
 
-        internal static void LoadFile(OpenFileDialog openFileDialog1)
+        internal static SessionDataList LoadFile(OpenFileDialog openFileDialog1)
         {
+            SessionDataList tempHRMDataList = new SessionDataList();
             string loadFile = "";
             openFileDialog1.Title = "Load cycle training data.";
             openFileDialog1.FileName = "";
@@ -29,13 +29,15 @@ namespace Analyser
 
                 stream = File.Open(loadFile, FileMode.Open);
 
-                m_hrmDataList = parser.ReadDataFromStream(stream);
+                tempHRMDataList = parser.ReadDataFromStream(stream);
 
 
                 
                 stream.Close();
 
             }
+
+            return tempHRMDataList;
         }
     }
 }
