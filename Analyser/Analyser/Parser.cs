@@ -89,7 +89,7 @@ namespace Analyser
             int paramIndex = 0;
             List<string> paramsList = new List<string>();
 
-            while ((line = file.ReadLine()) != null)
+            while ((line = file.ReadLine()) != null && paramIndex < 22)
             {
                 if (paramIndex < 22)
                 {
