@@ -22,6 +22,7 @@ namespace Analyser
         {
             FileManager.LoadFile(OpenFileDialog);
             CycleStatsListBox.DataSource = FileManager.m_hrmDataList.m_hrmDataIntervals;
+            dataGridView1.DataSource = FileManager.m_hrmDataList.m_hrmDataIntervals;
         }
     }
 }
