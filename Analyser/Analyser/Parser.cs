@@ -10,12 +10,12 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal HRMDataList m_hrmDataSet;
+        internal SessionDataList m_hrmDataSet;
         internal int guessMaxColumns = 10;
 
         public Parser() { }
 
-        public HRMDataList ReadDataFromStream(Stream stream)
+        public SessionDataList ReadDataFromStream(Stream stream)
         {
             List<string> paramsList;
 
@@ -36,7 +36,7 @@ namespace Analyser
                       {
                           case  "[Params]":
                               paramsList = GetParamsList(line, file);
-                              m_hrmDataSet = new HRMDataList(paramsList.ToArray());
+                              m_hrmDataSet = new SessionDataList(paramsList.ToArray());
                               break;
                           case "[Note]":
                               //TODO
@@ -118,7 +118,7 @@ namespace Analyser
                 }
 
                 m_hrmDataSet.Add(
-                    new HRMDataInterval(stats)
+                    new SessionDataInterval(stats)
                     );
             }
         }

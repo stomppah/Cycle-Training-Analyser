@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Analyser
 {
-    class HRMDataList : IList<HRMDataInterval>
+    class SessionDataList : IList<SessionDataInterval>
     {
-        public IList<HRMDataInterval> m_hrmDataIntervals = new List<HRMDataInterval>();
+        public IList<SessionDataInterval> m_hrmDataIntervals = new List<SessionDataInterval>();
 
         #region [Params]
         public int m_version, m_montior, m_smode;
@@ -19,9 +19,9 @@ namespace Analyser
         public int m_activeLimit, m_maxHR, m_restHR, m_startDelay, m_vo2max, m_weight;
         #endregion
 
-        public HRMDataList() { }
+        public SessionDataList() { }
 
-        public HRMDataList(string[] paramsList)
+        public SessionDataList(string[] paramsList)
         {
             Int32.TryParse(paramsList[0], out m_version);
             Int32.TryParse(paramsList[1], out m_montior);
@@ -51,12 +51,12 @@ namespace Analyser
         }
 
         #region IList Interface
-        public int IndexOf(HRMDataInterval item)
+        public int IndexOf(SessionDataInterval item)
         {
             return this.m_hrmDataIntervals.IndexOf(item);
         }
 
-        public void Insert(int index, HRMDataInterval item)
+        public void Insert(int index, SessionDataInterval item)
         {
             this.m_hrmDataIntervals.Insert(index, item);
         }
@@ -66,7 +66,7 @@ namespace Analyser
             this.m_hrmDataIntervals.RemoveAt(index);
         }
 
-        public HRMDataInterval this[int index]
+        public SessionDataInterval this[int index]
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Analyser
             }
         }
 
-        public void Add(HRMDataInterval item)
+        public void Add(SessionDataInterval item)
         {
             this.m_hrmDataIntervals.Add(item);
         }
@@ -88,12 +88,12 @@ namespace Analyser
             this.m_hrmDataIntervals.Clear();
         }
 
-        public bool Contains(HRMDataInterval item)
+        public bool Contains(SessionDataInterval item)
         {
             return this.m_hrmDataIntervals.Contains(item);
         }
 
-        public void CopyTo(HRMDataInterval[] array, int arrayIndex)
+        public void CopyTo(SessionDataInterval[] array, int arrayIndex)
         {
             this.m_hrmDataIntervals.CopyTo(array, arrayIndex);
         }
@@ -108,12 +108,12 @@ namespace Analyser
             get { return this.m_hrmDataIntervals.IsReadOnly; }
         }
 
-        public bool Remove(HRMDataInterval item)
+        public bool Remove(SessionDataInterval item)
         {
             return this.m_hrmDataIntervals.Remove(item);
         }
 
-        public IEnumerator<HRMDataInterval> GetEnumerator()
+        public IEnumerator<SessionDataInterval> GetEnumerator()
         {
             throw new NotImplementedException();
         }
