@@ -8,7 +8,7 @@ namespace Analyser
 {
     class HRMDataList : IList<HRMDataInterval>
     {
-        private IList<HRMDataInterval> m_hrmDataIntervals = new List<HRMDataInterval>();
+        public IList<HRMDataInterval> m_hrmDataIntervals = new List<HRMDataInterval>();
 
         #region [Params]
         public int m_version, m_montior, m_smode;

@@ -13,7 +13,7 @@ namespace Analyser
     {
         internal static Stream stream;
         internal static Parser parser = new Parser();
-        internal static HRMDataList m_hrmDataSet;
+        internal static HRMDataList m_hrmDataList;
 
         internal static void LoadFile(OpenFileDialog openFileDialog1)
         {
@@ -29,7 +29,7 @@ namespace Analyser
 
                 stream = File.Open(loadFile, FileMode.Open);
 
-                m_hrmDataSet = parser.ReadDataFromStream(stream);
+                m_hrmDataList = parser.ReadDataFromStream(stream);
 
 
                 

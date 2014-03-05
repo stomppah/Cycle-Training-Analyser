@@ -18,5 +18,10 @@ namespace Analyser
             m_power = data[4];
             m_powerBalance = data[5];
         }
+
+        public string StringOutput()
+        {
+            return m_bpm + " " + m_speed + " " + m_cadence + " " + m_altitude + " " + m_power + " " + m_powerBalance;
+        }
     }
 }

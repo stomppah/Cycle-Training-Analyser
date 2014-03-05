@@ -21,6 +21,7 @@ namespace Analyser
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileManager.LoadFile(OpenFileDialog);
+            CycleStatsListBox.DataSource = FileManager.m_hrmDataList.m_hrmDataIntervals;
         }
     }
 }
