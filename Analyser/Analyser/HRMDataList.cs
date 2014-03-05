@@ -11,8 +11,7 @@ namespace Analyser
         private IList<HRMDataInterval> m_hrmDataIntervals = new List<HRMDataInterval>();
 
         #region [Params]
-        public int m_version, m_montior;
-        public byte m_smode;
+        public int m_version, m_montior, m_smode;
         public DateTime m_date, m_startTime, m_length;
         public int m_interval;
         public int m_upper1, m_lower1, m_upper2, m_lower2, m_upper3, m_lower3;
@@ -22,36 +21,33 @@ namespace Analyser
 
         public HRMDataList() { }
 
-        public HRMDataList(int version, int monitor, byte smode, DateTime date, DateTime startTime, DateTime length,
-                            int interval, int upper1, int lower1, int upper2, int lower2, int upper3, int lower3,
-                            TimeSpan timer1, TimeSpan timer2, TimeSpan timer3, int activeLimit, int maxHR, int restHR,
-                            int startDelay, int vo2max, int weight)
+        public HRMDataList(string[] paramsList)
         {
-            m_version = version;
-            m_montior = monitor;
-            m_smode = smode;
-            m_date = date;
-            m_startTime = startTime;
-            m_length = length;
+            Int32.TryParse(paramsList[0], out m_version);
+            Int32.TryParse(paramsList[1], out m_montior);
+            Int32.TryParse(paramsList[2], out m_smode);
+            DateTime.TryParse(paramsList[3], out m_date);
+            DateTime.TryParse(paramsList[4], out m_startTime);
+            DateTime.TryParse(paramsList[5], out m_length);
+            
+            Int32.TryParse(paramsList[6], out m_interval);
+            Int32.TryParse(paramsList[7], out m_upper1);
+            Int32.TryParse(paramsList[8], out m_lower1);
+            Int32.TryParse(paramsList[9], out m_upper2);
+            Int32.TryParse(paramsList[10], out m_lower2);
+            Int32.TryParse(paramsList[11], out m_upper3);
+            Int32.TryParse(paramsList[12], out m_lower3);
 
-            m_interval = interval;
-            m_upper1 = upper1;
-            m_lower1 = lower1;
-            m_upper2 = upper2;
-            m_lower2 = lower2;
-            m_upper3 = upper3;
-            m_lower3 = lower3;
+            TimeSpan.TryParse(paramsList[13], out m_timer1);
+            TimeSpan.TryParse(paramsList[14], out m_timer2);
+            TimeSpan.TryParse(paramsList[15], out m_timer3);
+            Int32.TryParse(paramsList[16], out m_activeLimit);
+            Int32.TryParse(paramsList[17], out m_maxHR);
+            Int32.TryParse(paramsList[18], out m_restHR);
 
-            m_timer1 = timer1;
-            m_timer2 = timer2;
-            m_timer3 = timer3;
-            m_activeLimit = activeLimit;
-            m_maxHR = maxHR;
-            m_restHR = restHR;
-
-            m_startDelay = startDelay;
-            m_vo2max = vo2max;
-            m_weight = weight;
+            Int32.TryParse(paramsList[19], out m_startDelay);
+            Int32.TryParse(paramsList[20], out m_vo2max);
+            Int32.TryParse(paramsList[21], out m_weight);
         }
 
         #region IList Interface

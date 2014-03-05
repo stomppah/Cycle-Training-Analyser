@@ -10,7 +10,7 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal HRMDataList m_hrmDataSet = new HRMDataList();
+        internal HRMDataList m_hrmDataSet;
         internal int guessMaxColumns = 10;
 
         public Parser() { }
@@ -36,6 +36,7 @@ namespace Analyser
                       {
                           case  "[Params]":
                               paramsList = GetParamsList(line, file);
+                              m_hrmDataSet = new HRMDataList(paramsList.ToArray());
                               break;
                           case "[Note]":
                               //TODO
