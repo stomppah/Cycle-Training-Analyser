@@ -54,6 +54,7 @@ namespace Analyser
         {
             dateLabel.Text = m_currentSessionDataList.m_date.ToLongDateString();
             startTimeLabel.Text = m_currentSessionDataList.m_startTime.ToLongTimeString();
+            lengthLabel.Text = m_currentSessionDataList.m_length.ToLongTimeString();
         }
 
         private void UpdateDataGrid()

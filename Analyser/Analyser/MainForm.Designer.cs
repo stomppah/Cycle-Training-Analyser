@@ -41,6 +41,7 @@
             this.monitorLabel = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
             this.summaryGroupBox = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.startTimeLabel = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.lengthLabel = new System.Windows.Forms.Label();
             this.MainMenuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.summaryGroupBox.SuspendLayout();
@@ -164,16 +166,27 @@
             // 
             // summaryGroupBox
             // 
+            this.summaryGroupBox.Controls.Add(this.lengthLabel);
+            this.summaryGroupBox.Controls.Add(this.label6);
             this.summaryGroupBox.Controls.Add(this.label5);
             this.summaryGroupBox.Controls.Add(this.label4);
             this.summaryGroupBox.Controls.Add(this.startTimeLabel);
             this.summaryGroupBox.Controls.Add(this.dateLabel);
             this.summaryGroupBox.Location = new System.Drawing.Point(13, 173);
             this.summaryGroupBox.Name = "summaryGroupBox";
-            this.summaryGroupBox.Size = new System.Drawing.Size(197, 106);
+            this.summaryGroupBox.Size = new System.Drawing.Size(197, 158);
             this.summaryGroupBox.TabIndex = 2;
             this.summaryGroupBox.TabStop = false;
             this.summaryGroupBox.Text = "Summary";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 95);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(43, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Length:";
             // 
             // label5
             // 
@@ -211,7 +224,7 @@
             // 
             // generateGraphButton
             // 
-            this.generateGraphButton.Location = new System.Drawing.Point(13, 286);
+            this.generateGraphButton.Location = new System.Drawing.Point(13, 408);
             this.generateGraphButton.Name = "generateGraphButton";
             this.generateGraphButton.Size = new System.Drawing.Size(95, 23);
             this.generateGraphButton.TabIndex = 4;
@@ -318,6 +331,14 @@
             this.zedGraphControl1.TabIndex = 0;
             this.zedGraphControl1.Visible = false;
             // 
+            // lengthLabel
+            // 
+            this.lengthLabel.AutoSize = true;
+            this.lengthLabel.Location = new System.Drawing.Point(75, 95);
+            this.lengthLabel.Name = "lengthLabel";
+            this.lengthLabel.Size = new System.Drawing.Size(0, 13);
+            this.lengthLabel.TabIndex = 9;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,6 +397,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.TabPage tabPage2;
         private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lengthLabel;
     }
 }
 
