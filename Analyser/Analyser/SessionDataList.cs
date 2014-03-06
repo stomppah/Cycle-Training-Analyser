@@ -26,7 +26,12 @@ namespace Analyser
             Int32.TryParse(paramsList[0], out m_version);
             Int32.TryParse(paramsList[1], out m_montior);
             Int32.TryParse(paramsList[2], out m_smode);
-            DateTime.TryParse(paramsList[3], out m_date);
+            
+            int year, month, day;
+            Int32.TryParse(paramsList[3].Substring(0, 4), out year);
+            Int32.TryParse(paramsList[3].Substring(4, 2), out month);
+            Int32.TryParse(paramsList[3].Substring(6, 2), out day);
+            m_date = new DateTime(year, month, day);
             DateTime.TryParse(paramsList[4], out m_startTime);
             DateTime.TryParse(paramsList[5], out m_length);
             
