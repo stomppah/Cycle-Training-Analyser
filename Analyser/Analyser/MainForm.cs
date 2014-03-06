@@ -28,40 +28,7 @@ namespace Analyser
 
         private void generateGraphButton_Click(object sender, EventArgs e)
         {
-            // Lets generate sine and cosine wave
-            double[] x = new double[100];
-            double[] y = new double[100];
-            double[] z = new double[100];
-
-            for (int i = 0; i < x.Length; i++)
-            {
-                x[i] = i;
-                y[i] = Math.Sin(0.3 * x[i]);
-                z[i] = Math.Cos(0.3 * x[i]);
-            }
-
-            // This is to remove all plots
-            zedGraphControl1.GraphPane.CurveList.Clear();
-
-            // GraphPane object holds one or more Curve objects (or plots)
-            GraphPane myPane = zedGraphControl1.GraphPane;
-
-            // PointPairList holds the data for plotting, X and Y arrays 
-            PointPairList spl1 = new PointPairList(x, y);
-            PointPairList spl2 = new PointPairList(x, z);
-
-            // Add cruves to myPane object
-            LineItem myCurve1 = myPane.AddCurve("Sine Wave", spl1, Color.Blue, SymbolType.None);
-            LineItem myCurve2 = myPane.AddCurve("Cosine Wave", spl2, Color.Red, SymbolType.None);
-
-            myCurve1.Line.Width = 3.0F;
-            myCurve2.Line.Width = 3.0F;
-            myPane.Title.Text = "My First Plot";
-
-            // I add all three functions just to be sure it refeshes the plot.   
-            zedGraphControl1.AxisChange();
-            zedGraphControl1.Invalidate();
-            zedGraphControl1.Refresh();
+            UpdateGraph();
         }
 
         #region Update GUI
@@ -71,7 +38,9 @@ namespace Analyser
 
             UpdateSummaryInfo();
 
-            UpdateDataGrid();   
+            UpdateDataGrid();
+
+            UpdateGraph();
         }
 
         private void UpdateHeaderInfo()
@@ -101,6 +70,11 @@ namespace Analyser
                 row.Cells[5].Value = interval.m_powerBalance.ToString();
                 dataGridView1.Rows.Add(row);
             }
+        }
+
+        private void UpdateGraph()
+        {
+            Grapher.UpdateGraph(ref zedGraphControl1, ref m_currentSessionDataList);
         }
         #endregion
 

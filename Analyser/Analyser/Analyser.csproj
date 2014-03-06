@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileManager.cs" />
+    <Compile Include="Grapher.cs" />
     <Compile Include="SessionDataList.cs" />
     <Compile Include="SessionDataInterval.cs" />
     <Compile Include="Utilities\Logger.cs" />
