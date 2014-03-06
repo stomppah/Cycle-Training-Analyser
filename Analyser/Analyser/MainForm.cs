@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ZedGraph;
 
 namespace Analyser
 {
     public partial class MainForm : Form
     {
         private SessionDataList m_currentSessionDataList = new SessionDataList();
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -23,6 +24,26 @@ namespace Analyser
         {
             m_currentSessionDataList = FileManager.LoadFile(OpenFileDialog);
             UpdateGUI();
+        }
+
+        private void generateGraphButton_Click(object sender, EventArgs e)
+        {
+            ZedGraph.GraphPane myPane = new GraphPane();
+            // how do i draw a graph with zedgraph
+            double x1, y1, y2;
+            PointPairList list1 = new PointPairList();
+            PointPairList list2 = new PointPairList();
+            for (int i = 0; i < 36; i++)
+            {
+                x1 = (double)i + 1;
+                y1 = 1.5 + Math.Sin((double)i * 0.2);
+                y2 = 3.0 * (1.5 + Math.Sin((double)i * 0.2));
+                list1.Add(x1, y1);
+                list2.Add(x1, y2);
+            }
+            LineItem myCurve = myPane.AddCurve("Porsche", list1, Color.Red, SymbolType.Diamond);
+            LineItem myCurve2 = myPane.AddCurve("Piper", list2, Color.Blue, SymbolType.Circle);
+
         }
 
         #region Update GUI
@@ -64,5 +85,6 @@ namespace Analyser
             }
         }
         #endregion
+
     }
 }
