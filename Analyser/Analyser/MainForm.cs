@@ -74,6 +74,9 @@ namespace Analyser
 
         private void UpdateGraph()
         {
+            if (!zedGraphControl1.Visible)
+                zedGraphControl1.Visible = true;
+
             Grapher.UpdateGraph(ref zedGraphControl1, ref m_currentSessionDataList);
         }
         #endregion

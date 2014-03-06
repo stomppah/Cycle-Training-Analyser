@@ -316,6 +316,7 @@
             this.zedGraphControl1.ScrollMinY2 = 0D;
             this.zedGraphControl1.Size = new System.Drawing.Size(777, 506);
             this.zedGraphControl1.TabIndex = 0;
+            this.zedGraphControl1.Visible = false;
             // 
             // MainForm
             // 
