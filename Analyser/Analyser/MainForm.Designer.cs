@@ -302,6 +302,8 @@
             // 
             // zedGraphControl1
             // 
+            this.zedGraphControl1.BackColor = System.Drawing.Color.Transparent;
+            this.zedGraphControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.zedGraphControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphControl1.Location = new System.Drawing.Point(3, 3);
             this.zedGraphControl1.Name = "zedGraphControl1";
@@ -327,6 +329,7 @@
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainForm";
             this.Text = "Cycle Data Analyser";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);
