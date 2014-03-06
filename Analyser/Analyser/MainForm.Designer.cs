@@ -227,7 +227,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.MainMenuStrip);
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Cycle Data Analyser";
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();
             this.groupBox1.ResumeLayout(false);

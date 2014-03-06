@@ -7,7 +7,7 @@ namespace Analyser
 {
     class SessionDataInterval
     {
-        private int m_bpm, m_speed, m_cadence, m_altitude, m_power, m_powerBalance;
+        internal int m_bpm, m_speed, m_cadence, m_altitude, m_power, m_powerBalance;
 
         public SessionDataInterval( int[] data ) // bpm, int speed, int cadence, int altitude, int power, int powerBalance)
         {

@@ -25,18 +25,44 @@ namespace Analyser
             UpdateGUI();
         }
 
+        #region Update GUI
         private void UpdateGUI()
         {
-            // Update header info
+            UpdateHeaderInfo();
+
+            UpdateSummaryInfo();
+
+            UpdateDataGrid();   
+        }
+
+        private void UpdateHeaderInfo()
+        {
             versionLabel.Text = m_currentSessionDataList.m_version.ToString();
             monitorLabel.Text = m_currentSessionDataList.m_montior.ToString();
             smodeLabel.Text = m_currentSessionDataList.m_smode.ToString();
-
-            // Update summary info
-            dateLabel.Text = m_currentSessionDataList.m_date.ToLongDateString();
-            startTimeLabel.Text = m_currentSessionDataList.m_startTime.ToLongTimeString();
-            
         }
 
+        private void UpdateSummaryInfo()
+        {
+            dateLabel.Text = m_currentSessionDataList.m_date.ToLongDateString();
+            startTimeLabel.Text = m_currentSessionDataList.m_startTime.ToLongTimeString();
+        }
+
+        private void UpdateDataGrid()
+        {
+            foreach (var interval in m_currentSessionDataList)
+            {
+                DataGridViewRow row = new DataGridViewRow();
+                row.CreateCells(dataGridView1);
+                row.Cells[0].Value = interval.m_bpm.ToString();
+                row.Cells[1].Value = interval.m_speed.ToString();
+                row.Cells[2].Value = interval.m_cadence.ToString();
+                row.Cells[3].Value = interval.m_altitude.ToString();
+                row.Cells[4].Value = interval.m_power.ToString();
+                row.Cells[5].Value = interval.m_powerBalance.ToString();
+                dataGridView1.Rows.Add(row);
+            }
+        }
+        #endregion
     }
 }
