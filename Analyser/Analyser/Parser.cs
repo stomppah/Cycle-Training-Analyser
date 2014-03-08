@@ -145,23 +145,28 @@ namespace Analyser
                     case 1:
                         interval.Bpm = stats[0];
                         break;
-                    case 2:
+                    default:
                         interval.Bpm = stats[0];
-                        if (IsFlagSet(smode, Smode.Speed))
+                        if (IsFlagSet(smode, Smode.Speed | Smode.Cadence | Smode.Altitude | Smode.PowerOutput))
                         {
                             interval.Speed = stats[1] * 10;
+                            interval.Cadence = stats[2];
+                            interval.Altitude = stats[3];
+                            interval.Power = stats[4];
            
                         }
-                        else if (IsFlagSet(smode, Smode.Cadence))
-                        {
-                            interval.Cadence = stats[1];
-                        }
-                        else if (IsFlagSet(smode, Smode.Altitude))
-                        {
-                            interval.Altitude = stats[1];
-                        }
-                        break;
-                    default:
+                        //else if (IsFlagSet(smode, Smode.Cadence))
+                        //{
+                        //    interval.Cadence = stats[1];
+                        //}
+                        //else if (IsFlagSet(smode, Smode.Altitude))
+                        //{
+                        //    interval.Altitude = stats[1];
+                        //}
+                        //else if (IsFlagSet(smode, Smode.PowerOutput))
+                        //{
+                        //    interval.Power = stats[1];
+                        //}
                         break;
                 }
                     
