@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,6 @@ namespace Analyser
         [Flags]
         public enum Smode
         {
-            None = 0,           // 000000000
             AirPressure = 1,    // 000000001
             Imperial = 2,       // 000000010
             CyclingData = 4,    // 000000100
@@ -41,7 +41,49 @@ namespace Analyser
             Int32.TryParse(paramsList[0], out m_version);
             Int32.TryParse(paramsList[1], out m_montior);
             Int32.TryParse(paramsList[2], out m_smode);
+
+            Smode smode = (Smode) m_smode;
+
+            if (IsFlagSet(smode, Smode.Speed))
+            {
+                Logger.Write("Speed flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.Cadence))
+            {
+                Logger.Write("Cadence flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.Altitude))
+            {
+                Logger.Write("Altitude flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.PowerOutput))
+            {
+                Logger.Write("Power Output flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.PowerBalance))
+            {
+                Logger.Write("Power Balance flag is set.");
+            }
             
+            if (IsFlagSet(smode, Smode.PowerIndex))
+            {
+                Logger.Write("Power Index flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.CyclingData))
+            {
+                Logger.Write("Cycling Data flag is set.");
+            }
+
+            if (IsFlagSet(smode, Smode.Imperial))
+            {
+                Logger.Write("Imperial Units flag is set.");
+            }
+
             int year, month, day;
             Int32.TryParse(paramsList[3].Substring(0, 4), out year);
             Int32.TryParse(paramsList[3].Substring(4, 2), out month);
@@ -68,6 +110,11 @@ namespace Analyser
             Int32.TryParse(paramsList[19], out m_startDelay);
             Int32.TryParse(paramsList[20], out m_vo2max);
             Int32.TryParse(paramsList[21], out m_weight);
+        }
+
+        static bool IsFlagSet(Smode bitmask, Smode flag)
+        {
+            return (bitmask & flag) != 0;
         }
 
         #region IList Interface
