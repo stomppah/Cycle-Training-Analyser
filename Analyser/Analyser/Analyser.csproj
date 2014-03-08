@@ -73,6 +73,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Data\11060405.hrm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\12072803.hrm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\Polar_exercise_files2\Duncan Mullier.ppd" />
     <None Include="Data\Polar_exercise_files2\Library\TT Race.ppl" />
     <None Include="Data\Polar_exercise_files2\OneMinHillIntervalsRoad\10091201.hrm" />
