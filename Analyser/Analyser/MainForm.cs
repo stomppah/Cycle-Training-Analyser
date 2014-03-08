@@ -63,12 +63,12 @@ namespace Analyser
             {
                 DataGridViewRow row = new DataGridViewRow();
                 row.CreateCells(dataGridView1);
-                row.Cells[0].Value = interval.m_bpm.ToString();
-                row.Cells[1].Value = interval.m_speed.ToString();
-                row.Cells[2].Value = interval.m_cadence.ToString();
-                row.Cells[3].Value = interval.m_altitude.ToString();
-                row.Cells[4].Value = interval.m_power.ToString();
-                row.Cells[5].Value = interval.m_powerBalance.ToString();
+                row.Cells[0].Value = interval.Bpm.ToString();
+                row.Cells[1].Value = interval.Speed.ToString();
+                row.Cells[2].Value = interval.Cadence.ToString();
+                row.Cells[3].Value = interval.Altitude.ToString();
+                row.Cells[4].Value = interval.Power.ToString();
+                row.Cells[5].Value = interval.PowerBalance.ToString();
                 dataGridView1.Rows.Add(row);
             }
         }
