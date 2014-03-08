@@ -11,7 +11,7 @@ namespace Analyser.Utilities
        
         internal static void Write(string output)
         {
-            Console.WriteLine("Debug Logger: " + output.Trim());
+            Debug.WriteLine("Debug Logger: " + output.Trim());
         }
 
     }
