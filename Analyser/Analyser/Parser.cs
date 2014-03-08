@@ -16,25 +16,6 @@ namespace Analyser
 
         public Parser() { }
 
-        [Flags]
-        public enum Smode
-        {
-            AirPressure = 1,    // 000000001
-            Imperial = 2,       // 000000010
-            CyclingData = 4,    // 000000100
-            PowerIndex = 8,     // 000001000
-            PowerBalance = 16,  // 000010000
-            PowerOutput = 32,   // 000100000
-            Altitude = 64,      // 001000000
-            Cadence = 128,      // 010000000
-            Speed = 256         // 100000000
-        }
-
-        static bool IsFlagSet(Smode bitmask, Smode flag)
-        {
-            return (bitmask & flag) != 0;
-        }
-
         public SessionDataList ReadDataFromStream(Stream stream)
         {
             List<string> paramsList;
@@ -137,43 +118,21 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                Smode smode = (Smode)m_hrmDataSet.m_smode;
+                Smode smode = m_hrmDataSet.CurrentSMode;
                 SessionDataInterval interval = new SessionDataInterval();
 
-                switch (stats.Length)
+                interval.Bpm = stats[0];
+
+                if (stats.Length >= 5)
                 {
-                    case 1:
-                        interval.Bpm = stats[0];
-                        break;
-                    default:
-                        interval.Bpm = stats[0];
-                        if (IsFlagSet(smode, Smode.Speed | Smode.Cadence | Smode.Altitude | Smode.PowerOutput))
-                        {
-                            interval.Speed = stats[1] * 10;
-                            interval.Cadence = stats[2];
-                            interval.Altitude = stats[3];
-                            interval.Power = stats[4];
-           
-                        }
-                        //else if (IsFlagSet(smode, Smode.Cadence))
-                        //{
-                        //    interval.Cadence = stats[1];
-                        //}
-                        //else if (IsFlagSet(smode, Smode.Altitude))
-                        //{
-                        //    interval.Altitude = stats[1];
-                        //}
-                        //else if (IsFlagSet(smode, Smode.PowerOutput))
-                        //{
-                        //    interval.Power = stats[1];
-                        //}
-                        break;
+                    interval.Speed = stats[1] * 10;
+                    interval.Cadence = stats[2];
+                    interval.Altitude = stats[3];
+                    interval.Power = stats[4];
+                    interval.PowerBalance = stats[5];
                 }
                     
-
-                m_hrmDataSet.Add(
-                    interval
-                    );
+                m_hrmDataSet.Add(interval);
             }
         }
 

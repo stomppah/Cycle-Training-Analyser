@@ -129,5 +129,7 @@ namespace Analyser
             return this.m_hrmDataIntervals.GetEnumerator();
         }
         #endregion
+
+        public Smode CurrentSMode { get { return (Smode) m_smode; } }
     }
 }

@@ -6,13 +6,18 @@ namespace Analyser.Utilities
     /// <summary>
     /// Responsible for displaying runtime information.
     /// </summary>
-    internal static class Logger
-    {
-       
-        internal static void Write(string output)
+    public static class Extensions
+    {       
+        public static void Logger(string output)
         {
             Debug.WriteLine("Debug Logger: " + output.Trim());
         }
+
+        public static bool IsFlagSet(Smode bitmask, Smode flag)
+        {
+            return (bitmask & flag) != 0;
+        }
+
 
     }
 
