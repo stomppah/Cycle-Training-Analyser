@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Analyser
             Int32.TryParse(paramsList[0], out m_version);
             Int32.TryParse(paramsList[1], out m_montior);
             Int32.TryParse(paramsList[2], out m_smode);
-            
+
             int year, month, day;
             Int32.TryParse(paramsList[3].Substring(0, 4), out year);
             Int32.TryParse(paramsList[3].Substring(4, 2), out month);
@@ -128,5 +129,7 @@ namespace Analyser
             return this.m_hrmDataIntervals.GetEnumerator();
         }
         #endregion
+
+        public Smode CurrentSMode { get { return (Smode) m_smode; } }
     }
 }

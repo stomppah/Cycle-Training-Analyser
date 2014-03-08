@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -26,12 +27,12 @@ namespace Analyser
             foreach (var interval in sessionDataList)
             {
                 x[index] = index;
-                y_alt[index] = interval.m_altitude;
-                y_bpm[index] = interval.m_bpm;
-                y_cad[index] = interval.m_cadence;
-                y_pow[index] = interval.m_power;
-                y_powBalance[index] = interval.m_powerBalance;
-                y_speed[index] = interval.m_speed;
+                y_alt[index] = interval.Altitude;
+                y_bpm[index] = interval.Bpm;
+                y_cad[index] = interval.Cadence;
+                y_pow[index] = interval.Power;
+                y_powBalance[index] = interval.PowerBalance;
+                y_speed[index] = interval.Speed;
 
                 index++;
             }
@@ -51,20 +52,26 @@ namespace Analyser
             PointPairList powBal = new PointPairList(x, y_powBalance);
             PointPairList speed = new PointPairList(x, y_speed);
 
-            // Add curves to myPane object
-            LineItem altitudeCurve = myPane.AddCurve("Altitude", altitude, Color.Blue, SymbolType.None);
             LineItem bpmCurve = myPane.AddCurve("Bpm", bpm, Color.Red, SymbolType.None);
-            LineItem cadanceCurve = myPane.AddCurve("Cadence", cad, Color.Yellow, SymbolType.None);
-            LineItem powerCurve = myPane.AddCurve("Power", pow, Color.SpringGreen, SymbolType.None);
-            //LineItem powerBalanceCurve = myPane.AddCurve("Power Balance", powBal, Color.Purple, SymbolType.None);
-            LineItem speedCurve = myPane.AddCurve("Speed", speed, Color.RosyBrown, SymbolType.None);
+            LineItem speedCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Speed)
+                ? myPane.AddCurve("Speed", speed, Color.RosyBrown, SymbolType.None) : null;
+            LineItem cadanceCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Cadence)
+                ? myPane.AddCurve("Cadence", cad, Color.Yellow, SymbolType.None) : null;
+            LineItem powerCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.PowerOutput)
+                ? myPane.AddCurve("Power", pow, Color.SpringGreen, SymbolType.None) : null;
+            LineItem altitudeCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Altitude)
+                ? (myPane.AddCurve("Altitude", altitude, Color.Blue, SymbolType.None)) : null;
 
-            altitudeCurve.Line.Width = 2.0F;
-            bpmCurve.Line.Width = 2.0F;
-            cadanceCurve.Line.Width = 2.0F;
-            powerCurve.Line.Width = 2.0F;
-            //powerBalanceCurve.Line.Width = 2.0F;
-            speedCurve.Line.Width = 2.0F;
+           
+            bpmCurve.Line.Width = 3.0F;
+            if (speedCurve != null)
+                speedCurve.Line.Width = 2.0F;
+            if (altitudeCurve != null)
+                altitudeCurve.Line.Width = 2.0F;
+            if (cadanceCurve != null)
+                cadanceCurve.Line.Width = 2.0F;
+            if (powerCurve != null)
+                powerCurve.Line.Width = 2.0F;
 
             myPane.Title.Text = "Test Cycle data plotting";
 

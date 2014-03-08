@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -117,9 +118,21 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                m_hrmDataSet.Add(
-                    new SessionDataInterval(stats)
-                    );
+                Smode smode = m_hrmDataSet.CurrentSMode;
+                SessionDataInterval interval = new SessionDataInterval();
+
+                interval.Bpm = stats[0];
+
+                if (stats.Length >= 5)
+                {
+                    interval.Speed = stats[1] * 10;
+                    interval.Cadence = stats[2];
+                    interval.Altitude = stats[3];
+                    interval.Power = stats[4];
+                    interval.PowerBalance = stats[5];
+                }
+                    
+                m_hrmDataSet.Add(interval);
             }
         }
 
