@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -14,6 +15,25 @@ namespace Analyser
         internal int guessMaxColumns = 10;
 
         public Parser() { }
+
+        [Flags]
+        public enum Smode
+        {
+            AirPressure = 1,    // 000000001
+            Imperial = 2,       // 000000010
+            CyclingData = 4,    // 000000100
+            PowerIndex = 8,     // 000001000
+            PowerBalance = 16,  // 000010000
+            PowerOutput = 32,   // 000100000
+            Altitude = 64,      // 001000000
+            Cadence = 128,      // 010000000
+            Speed = 256         // 100000000
+        }
+
+        static bool IsFlagSet(Smode bitmask, Smode flag)
+        {
+            return (bitmask & flag) != 0;
+        }
 
         public SessionDataList ReadDataFromStream(Stream stream)
         {
@@ -109,6 +129,9 @@ namespace Analyser
             {
                 // split variable space seperated text
                 string[] tempResults = Regex.Split(line, "\\s+");
+                Smode smode = (Smode)m_hrmDataSet.m_smode;
+
+                SessionDataInterval interval = new SessionDataInterval();
 
                 //convert it to Int32 format
                 Int32[] stats = new Int32[tempResults.Length];
@@ -117,8 +140,20 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
+
+                if (IsFlagSet(smode, Smode.Speed | Smode.Cadence | Smode.Altitude | Smode.PowerOutput | Smode.PowerBalance ))
+                {
+                    
+                    interval.Speed = stats[0];
+                    interval.Cadence = stats[1];
+                    interval.Altitude = stats[2];
+                    interval.Bpm = stats[3];
+                    interval.Power = stats[4];
+                    interval.PowerBalance = stats[5];
+                }
+
                 m_hrmDataSet.Add(
-                    new SessionDataInterval(stats)
+                    interval
                     );
             }
         }

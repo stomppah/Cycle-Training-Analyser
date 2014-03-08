@@ -26,12 +26,12 @@ namespace Analyser
             foreach (var interval in sessionDataList)
             {
                 x[index] = index;
-                y_alt[index] = interval.m_altitude;
-                y_bpm[index] = interval.m_bpm;
-                y_cad[index] = interval.m_cadence;
-                y_pow[index] = interval.m_power;
-                y_powBalance[index] = interval.m_powerBalance;
-                y_speed[index] = interval.m_speed;
+                y_alt[index] = interval.Altitude;
+                y_bpm[index] = interval.Bpm;
+                y_cad[index] = interval.Cadence;
+                y_pow[index] = interval.Power;
+                y_powBalance[index] = interval.PowerBalance;
+                y_speed[index] = interval.Speed;
 
                 index++;
             }
