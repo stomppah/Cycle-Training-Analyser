@@ -10,6 +10,21 @@ namespace Analyser
     {
         public IList<SessionDataInterval> m_hrmDataIntervals = new List<SessionDataInterval>();
 
+        [Flags]
+        public enum Smode
+        {
+            None = 0,           // 000000000
+            AirPressure = 1,    // 000000001
+            Imperial = 2,       // 000000010
+            CyclingData = 4,    // 000000100
+            PowerIndex = 8,     // 000001000
+            PowerBalance = 16,  // 000010000
+            PowerOutput = 32,   // 000100000
+            Altitude = 64,      // 001000000
+            Cadence = 128,      // 010000000
+            Speed = 256         // 100000000
+        }
+
         #region [Params]
         public int m_version, m_montior, m_smode;
         public DateTime m_date, m_startTime, m_length;
