@@ -129,9 +129,6 @@ namespace Analyser
             {
                 // split variable space seperated text
                 string[] tempResults = Regex.Split(line, "\\s+");
-                Smode smode = (Smode)m_hrmDataSet.m_smode;
-
-                SessionDataInterval interval = new SessionDataInterval();
 
                 //convert it to Int32 format
                 Int32[] stats = new Int32[tempResults.Length];
@@ -140,17 +137,34 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
+                Smode smode = (Smode)m_hrmDataSet.m_smode;
+                SessionDataInterval interval = new SessionDataInterval();
 
-                if (IsFlagSet(smode, Smode.Speed | Smode.Cadence | Smode.Altitude | Smode.PowerOutput | Smode.PowerBalance ))
+                switch (stats.Length)
                 {
-                    
-                    interval.Speed = stats[0];
-                    interval.Cadence = stats[1];
-                    interval.Altitude = stats[2];
-                    interval.Bpm = stats[3];
-                    interval.Power = stats[4];
-                    interval.PowerBalance = stats[5];
+                    case 1:
+                        interval.Bpm = stats[0];
+                        break;
+                    case 2:
+                        interval.Bpm = stats[0];
+                        if (IsFlagSet(smode, Smode.Speed))
+                        {
+                            interval.Speed = stats[1] * 10;
+           
+                        }
+                        else if (IsFlagSet(smode, Smode.Cadence))
+                        {
+                            interval.Cadence = stats[1];
+                        }
+                        else if (IsFlagSet(smode, Smode.Altitude))
+                        {
+                            interval.Altitude = stats[1];
+                        }
+                        break;
+                    default:
+                        break;
                 }
+                    
 
                 m_hrmDataSet.Add(
                     interval
