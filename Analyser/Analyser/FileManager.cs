@@ -1,43 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Forms;
+using Analyser.Properties;
 
 namespace Analyser
 {
     internal static class FileManager
     {
-        internal static Stream stream;
-        internal static Parser parser = new Parser();
+        internal static Stream Stream;
+        internal static Parser Parser = new Parser();
 
         internal static SessionDataList LoadFile(OpenFileDialog openFileDialog1)
         {
-            var tempHRMDataList = new SessionDataList();
-            var loadFile = "";
-            openFileDialog1.Title = "Load cycle training data.";
+            var tempHrmDataList = new SessionDataList();
+            openFileDialog1.Title = Resources.FileManager_LoadFile_Load_cycle_training_data_;
             openFileDialog1.FileName = "";
 
-            openFileDialog1.Filter = "HRM Files|*.hrm";
+            openFileDialog1.Filter = Resources.FileManager_LoadFile_HRM_Files___hrm;
 
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
-                loadFile = openFileDialog1.FileName;
+                var loadFile = openFileDialog1.FileName;
 
-                stream = File.Open(loadFile, FileMode.Open);
+                Stream = File.Open(loadFile, FileMode.Open);
 
-                tempHRMDataList = parser.ReadDataFromStream(stream);
+                tempHrmDataList = Parser.ReadDataFromStream(Stream);
 
 
                 
-                stream.Close();
+                Stream.Close();
 
             }
 
-            return tempHRMDataList;
+            return tempHrmDataList;
         }
     }
 }

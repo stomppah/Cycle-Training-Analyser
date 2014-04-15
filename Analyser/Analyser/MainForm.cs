@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
-using ZedGraph;
 
 namespace Analyser
 {
     public partial class MainForm : Form
     {
-        private SessionDataList m_currentSessionDataList = new SessionDataList();
+        private SessionDataList _currentSessionDataList = new SessionDataList();
         
         public MainForm()
         {
@@ -22,8 +15,8 @@ namespace Analyser
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_currentSessionDataList = FileManager.LoadFile(OpenFileDialog);
-            UpdateGUI();
+            _currentSessionDataList = FileManager.LoadFile(OpenFileDialog);
+            UpdateGui();
         }
 
         private void generateGraphButton_Click(object sender, EventArgs e)
@@ -32,7 +25,7 @@ namespace Analyser
         }
 
         #region Update GUI
-        private void UpdateGUI()
+        private void UpdateGui()
         {
             UpdateHeaderInfo();
 
@@ -45,30 +38,30 @@ namespace Analyser
 
         private void UpdateHeaderInfo()
         {
-            versionLabel.Text = m_currentSessionDataList.m_version.ToString();
-            monitorLabel.Text = m_currentSessionDataList.m_montior.ToString();
-            smodeLabel.Text = m_currentSessionDataList.m_smode.ToString();
+            versionLabel.Text = _currentSessionDataList.Version.ToString(CultureInfo.InvariantCulture);
+            monitorLabel.Text = _currentSessionDataList.Montior.ToString(CultureInfo.InvariantCulture);
+            if (smodeLabel != null) smodeLabel.Text = _currentSessionDataList.Smode.ToString(CultureInfo.InvariantCulture);
         }
 
         private void UpdateSummaryInfo()
         {
-            dateLabel.Text = m_currentSessionDataList.m_date.ToLongDateString();
-            startTimeLabel.Text = m_currentSessionDataList.m_startTime.ToLongTimeString();
-            lengthLabel.Text = m_currentSessionDataList.m_length.ToLongTimeString();
+            dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
+            startTimeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
+            lengthLabel.Text = _currentSessionDataList.Length.ToLongTimeString();
         }
 
         private void UpdateDataGrid()
         {
-            foreach (var interval in m_currentSessionDataList)
+            foreach (var interval in _currentSessionDataList)
             {
                 var row = new DataGridViewRow();
                 row.CreateCells(dataGridView1);
-                row.Cells[0].Value = interval.Bpm.ToString();
-                row.Cells[1].Value = interval.Speed.ToString();
-                row.Cells[2].Value = interval.Cadence.ToString();
-                row.Cells[3].Value = interval.Altitude.ToString();
-                row.Cells[4].Value = interval.Power.ToString();
-                row.Cells[5].Value = interval.PowerBalance.ToString();
+                row.Cells[0].Value = interval.Bpm.ToString(CultureInfo.InvariantCulture);
+                row.Cells[1].Value = interval.Speed.ToString(CultureInfo.InvariantCulture);
+                row.Cells[2].Value = interval.Cadence.ToString(CultureInfo.InvariantCulture);
+                row.Cells[3].Value = interval.Altitude.ToString(CultureInfo.InvariantCulture);
+                row.Cells[4].Value = interval.Power.ToString(CultureInfo.InvariantCulture);
+                row.Cells[5].Value = interval.PowerBalance.ToString(CultureInfo.InvariantCulture);
                 dataGridView1.Rows.Add(row);
             }
         }
@@ -78,7 +71,7 @@ namespace Analyser
             if (!zedGraphControl1.Visible)
                 zedGraphControl1.Visible = true;
 
-            Grapher.UpdateGraph(ref zedGraphControl1, ref m_currentSessionDataList);
+            Grapher.UpdateGraph(ref zedGraphControl1, ref _currentSessionDataList);
         }
         #endregion
 

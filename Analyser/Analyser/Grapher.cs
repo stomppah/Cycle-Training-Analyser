@@ -1,22 +1,17 @@
-﻿using Analyser.Utilities;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Analyser.Utilities;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZedGraph;
 
 namespace Analyser
 {
     internal class Grapher
     {
-        // GraphPane object holds one or more 5Curve objects (or plots)
+        // GraphPane object holds one or more curve objects (or plots)
         internal static GraphPane MyPane;
         internal static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
         internal static SessionDataList SessionDataList;
         internal static int ListCount;
-
         internal static PointPairList AltitudePointPairList,
             BpmPointPairList,
             CadencePointPairList,
@@ -24,8 +19,10 @@ namespace Analyser
             SpeedPointPairList,
             PowerBalancePointPairList;
 
-        internal static void UpdateGraph(ref ZedGraph.ZedGraphControl zedGraphControl, ref SessionDataList sessionDataList)
+        internal static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref SessionDataList sessionDataList)
         {
+            if (zedGraphControl == null) throw new ArgumentNullException("zedGraphControl");
+
             // Update all fields from incoming data
             SessionDataList = sessionDataList;
             ListCount = SessionDataList.Count;

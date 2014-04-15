@@ -114,4 +114,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FileManager_LoadFile_Load_cycle_training_data_" xml:space="preserve">
+    <value>Load cycle training data.</value>
+    <comment>Open File Dialog Title Text</comment>
+  </data>
+  <data name="FileManager_LoadFile_HRM_Files___hrm" xml:space="preserve">
+    <value>HRM Files|*.hrm</value>
+    <comment>Accepted File Format</comment>
+  </data>
 </root>

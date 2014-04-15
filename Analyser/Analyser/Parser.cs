@@ -1,34 +1,25 @@
-﻿using Analyser.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Analyser
 {
     internal class Parser
     {
-        internal SessionDataList m_hrmDataSet;
-        internal int guessMaxColumns = 10;
-
-        public Parser() { }
+        internal SessionDataList HrmDataSet;
+        internal int GuessMaxColumns = 10;
 
         public SessionDataList ReadDataFromStream(Stream stream)
         {
-            List<string> paramsList;
-
             // Read stream line by line
-            string line;
             if (stream != null) {
                 StreamReader file = null;
                try {
                   file = new StreamReader(stream);
-                  while ((line = file.ReadLine()) != null) {
-
-
+                   string line;
+                   while ((line = file.ReadLine()) != null) {
 
                       // It's important that this 
                       // is done in the following order.
@@ -36,8 +27,8 @@ namespace Analyser
                       switch (line)
                       {
                           case  "[Params]":
-                              paramsList = GetParamsList(line, file);
-                              m_hrmDataSet = new SessionDataList(paramsList.ToArray());
+                              List<string> paramsList = GetParamsList(line, file);
+                              HrmDataSet = new SessionDataList(paramsList.ToArray());
                               break;
                           case "[Note]":
                               //TODO
@@ -69,12 +60,8 @@ namespace Analyser
                           case "[HRData]":
                               ReadCoreData(line, file);
                               break;
-
-                          default:
-                              break;
                       }
                       //////////////////////////////////////////
-
 
                   }
                } finally {
@@ -83,11 +70,13 @@ namespace Analyser
                }
             }
 
-            return m_hrmDataSet;
+            return HrmDataSet;
         }
 
         private static List<string> GetParamsList(string line, StreamReader file)
         {
+            if (line == null) throw new ArgumentNullException("line");
+
             var paramIndex = 0;
             var paramsList = new List<string>();
 
@@ -106,6 +95,8 @@ namespace Analyser
 
         private void ReadCoreData(string line, StreamReader file)
         {
+            if (line == null) throw new ArgumentNullException("line");
+
             while ((line = file.ReadLine()) != null)
             {
                 // split variable space seperated text
@@ -118,10 +109,7 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                var smode = m_hrmDataSet.CurrentSMode;
-                var interval = new SessionDataInterval();
-
-                interval.Bpm = stats[0];
+                var interval = new SessionDataInterval {Bpm = stats[0]};
 
                 if (stats.Length >= 5)
                 {
@@ -132,9 +120,8 @@ namespace Analyser
                     interval.PowerBalance = stats[5];
                 }
                     
-                m_hrmDataSet.Add(interval);
+                HrmDataSet.Add(interval);
             }
         }
-
     }
 }
