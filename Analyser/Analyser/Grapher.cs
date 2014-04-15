@@ -11,58 +11,58 @@ namespace Analyser
 {
     internal class Grapher
     {
+        // GraphPane object holds one or more 5Curve objects (or plots)
+        internal static GraphPane MyPane;
+        internal static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
+        internal static SessionDataList SessionDataList;
+        internal static int ListCount;
+
+        internal static PointPairList AltitudePointPairList,
+            BpmPointPairList,
+            CadencePointPairList,
+            PowerPointPairList,
+            SpeedPointPairList,
+            PowerBalancePointPairList;
+
         internal static void UpdateGraph(ref ZedGraph.ZedGraphControl zedGraphControl, ref SessionDataList sessionDataList)
         {
-            // Lets generate sine and cosine wave
-            var x = new double[sessionDataList.Count];
-            var y_alt = new double[sessionDataList.Count];
-            var y_bpm = new double[sessionDataList.Count];
-            var y_speed = new double[sessionDataList.Count];
-            var y_pow = new double[sessionDataList.Count];
-            var y_cad = new double[sessionDataList.Count];
-            var y_powBalance = new double[sessionDataList.Count];
+            // Update all fields from incoming data
+            SessionDataList = sessionDataList;
+            ListCount = SessionDataList.Count;
+            MyPane = zedGraphControl.GraphPane;
 
-            var index = 0;
+            ResetAndUpdateIntervalData();
 
-            foreach (var interval in sessionDataList)
-            {
-                x[index] = index;
-                y_alt[index] = interval.Altitude;
-                y_bpm[index] = interval.Bpm;
-                y_cad[index] = interval.Cadence;
-                y_pow[index] = interval.Power;
-                y_powBalance[index] = interval.PowerBalance;
-                y_speed[index] = interval.Speed;
+            RemovePreviousPlots();
 
-                index++;
-            }
+            SetupGraphAxes();
 
+            ResetPointPairListsFromIntervalData();
 
-            // This is to remove all plots
-            zedGraphControl.GraphPane.CurveList.Clear();
+            DrawDataToGraph();
 
-            // GraphPane object holds one or more Curve objects (or plots)
-            var myPane = zedGraphControl.GraphPane;
+            // I add all three functions just to be sure it refeshes the plot.   
+            zedGraphControl.AxisChange();
+            zedGraphControl.Invalidate();
+            zedGraphControl.Refresh();
+        }
 
-            // PointPairList holds the data for plotting, X and Y arrays 
-            var altitude = new PointPairList(x, y_alt);
-            var bpm = new PointPairList(x, y_bpm);
-            var cad = new PointPairList(x, y_cad);
-            var pow = new PointPairList(x, y_pow);
-            var powBal = new PointPairList(x, y_powBalance);
-            var speed = new PointPairList(x, y_speed);
+        private static void DrawDataToGraph()
+        {
+            var bpmCurve = MyPane.AddCurve("Bpm", BpmPointPairList, Color.Red, SymbolType.None);
+            var speedCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Speed)
+                ? MyPane.AddCurve("Speed", SpeedPointPairList, Color.RosyBrown, SymbolType.None)
+                : null;
+            var cadanceCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Cadence)
+                ? MyPane.AddCurve("Cadence", CadencePointPairList, Color.Yellow, SymbolType.None)
+                : null;
+            var powerCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.PowerOutput)
+                ? MyPane.AddCurve("Power", PowerPointPairList, Color.SpringGreen, SymbolType.None)
+                : null;
+            var altitudeCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Altitude)
+                ? (MyPane.AddCurve("Altitude", AltitudePointPairList, Color.Blue, SymbolType.None))
+                : null;
 
-            var bpmCurve = myPane.AddCurve("Bpm", bpm, Color.Red, SymbolType.None);
-            var speedCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Speed)
-                ? myPane.AddCurve("Speed", speed, Color.RosyBrown, SymbolType.None) : null;
-            var cadanceCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Cadence)
-                ? myPane.AddCurve("Cadence", cad, Color.Yellow, SymbolType.None) : null;
-            var powerCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.PowerOutput)
-                ? myPane.AddCurve("Power", pow, Color.SpringGreen, SymbolType.None) : null;
-            var altitudeCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Altitude)
-                ? (myPane.AddCurve("Altitude", altitude, Color.Blue, SymbolType.None)) : null;
-
-           
             bpmCurve.Line.Width = 3.0F;
             if (speedCurve != null)
                 speedCurve.Line.Width = 2.0F;
@@ -72,13 +72,61 @@ namespace Analyser
                 cadanceCurve.Line.Width = 2.0F;
             if (powerCurve != null)
                 powerCurve.Line.Width = 2.0F;
+        }
 
-            myPane.Title.Text = "Test Cycle data plotting";
+        private static void ResetPointPairListsFromIntervalData()
+        {
+            // These lists hold the data for plotting X and Y arrays 
+            AltitudePointPairList = new PointPairList(XTime, YAltitude);
+            BpmPointPairList = new PointPairList(XTime, YBpm);
+            CadencePointPairList = new PointPairList(XTime, YCadance);
+            PowerPointPairList = new PointPairList(XTime, YPower);
+            PowerBalancePointPairList = new PointPairList(XTime, YPowerBalance);
+            SpeedPointPairList = new PointPairList(XTime, YSpeed);
+        }
 
-            // I add all three functions just to be sure it refeshes the plot.   
-            zedGraphControl.AxisChange();
-            zedGraphControl.Invalidate();
-            zedGraphControl.Refresh();
+        private static void RemovePreviousPlots()
+        {
+            MyPane.CurveList.Clear();
+        }
+
+        private static void SetupGraphAxes()
+        {
+            MyPane.Title.Text = "Test Cycle data plotting";
+
+            // X Axis
+            MyPane.XAxis.Title.Text = "Time (seconds)";
+            MyPane.XAxis.Scale.Format = "HH:mm:ss.fff";
+            MyPane.XAxis.Type = AxisType.Date;
+
+            // Y Axis
+            MyPane.YAxis.Title.Text = "Some Units Here";
+        }
+
+        private static void ResetAndUpdateIntervalData()
+        {
+            XTime = new double[ListCount];
+            YAltitude = new double[ListCount];
+            YBpm = new double[ListCount];
+            YSpeed = new double[ListCount];
+            YPower = new double[ListCount];
+            YCadance = new double[ListCount];
+            YPowerBalance = new double[ListCount];
+
+            var index = 0;
+
+            foreach (var interval in SessionDataList)
+            {
+                XTime[index] = index;
+                YAltitude[index] = interval.Altitude;
+                YBpm[index] = interval.Bpm;
+                YCadance[index] = interval.Cadence;
+                YPower[index] = interval.Power;
+                YPowerBalance[index] = interval.PowerBalance;
+                YSpeed[index] = interval.Speed;
+
+                index++;
+            }
         }
     }
 }
