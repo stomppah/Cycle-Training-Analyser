@@ -16,8 +16,8 @@ namespace Analyser
 
         internal static SessionDataList LoadFile(OpenFileDialog openFileDialog1)
         {
-            SessionDataList tempHRMDataList = new SessionDataList();
-            string loadFile = "";
+            var tempHRMDataList = new SessionDataList();
+            var loadFile = "";
             openFileDialog1.Title = "Load cycle training data.";
             openFileDialog1.FileName = "";
 

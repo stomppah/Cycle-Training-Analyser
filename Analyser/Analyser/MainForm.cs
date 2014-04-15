@@ -61,7 +61,7 @@ namespace Analyser
         {
             foreach (var interval in m_currentSessionDataList)
             {
-                DataGridViewRow row = new DataGridViewRow();
+                var row = new DataGridViewRow();
                 row.CreateCells(dataGridView1);
                 row.Cells[0].Value = interval.Bpm.ToString();
                 row.Cells[1].Value = interval.Speed.ToString();

@@ -14,15 +14,15 @@ namespace Analyser
         internal static void UpdateGraph(ref ZedGraph.ZedGraphControl zedGraphControl, ref SessionDataList sessionDataList)
         {
             // Lets generate sine and cosine wave
-            double[] x = new double[sessionDataList.Count];
-            double[] y_alt = new double[sessionDataList.Count];
-            double[] y_bpm = new double[sessionDataList.Count];
-            double[] y_speed = new double[sessionDataList.Count];
-            double[] y_pow = new double[sessionDataList.Count];
-            double[] y_cad = new double[sessionDataList.Count];
-            double[] y_powBalance = new double[sessionDataList.Count];
+            var x = new double[sessionDataList.Count];
+            var y_alt = new double[sessionDataList.Count];
+            var y_bpm = new double[sessionDataList.Count];
+            var y_speed = new double[sessionDataList.Count];
+            var y_pow = new double[sessionDataList.Count];
+            var y_cad = new double[sessionDataList.Count];
+            var y_powBalance = new double[sessionDataList.Count];
 
-            int index = 0;
+            var index = 0;
 
             foreach (var interval in sessionDataList)
             {
@@ -42,24 +42,24 @@ namespace Analyser
             zedGraphControl.GraphPane.CurveList.Clear();
 
             // GraphPane object holds one or more Curve objects (or plots)
-            GraphPane myPane = zedGraphControl.GraphPane;
+            var myPane = zedGraphControl.GraphPane;
 
             // PointPairList holds the data for plotting, X and Y arrays 
-            PointPairList altitude = new PointPairList(x, y_alt);
-            PointPairList bpm = new PointPairList(x, y_bpm);
-            PointPairList cad = new PointPairList(x, y_cad);
-            PointPairList pow = new PointPairList(x, y_pow);
-            PointPairList powBal = new PointPairList(x, y_powBalance);
-            PointPairList speed = new PointPairList(x, y_speed);
+            var altitude = new PointPairList(x, y_alt);
+            var bpm = new PointPairList(x, y_bpm);
+            var cad = new PointPairList(x, y_cad);
+            var pow = new PointPairList(x, y_pow);
+            var powBal = new PointPairList(x, y_powBalance);
+            var speed = new PointPairList(x, y_speed);
 
-            LineItem bpmCurve = myPane.AddCurve("Bpm", bpm, Color.Red, SymbolType.None);
-            LineItem speedCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Speed)
+            var bpmCurve = myPane.AddCurve("Bpm", bpm, Color.Red, SymbolType.None);
+            var speedCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Speed)
                 ? myPane.AddCurve("Speed", speed, Color.RosyBrown, SymbolType.None) : null;
-            LineItem cadanceCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Cadence)
+            var cadanceCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Cadence)
                 ? myPane.AddCurve("Cadence", cad, Color.Yellow, SymbolType.None) : null;
-            LineItem powerCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.PowerOutput)
+            var powerCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.PowerOutput)
                 ? myPane.AddCurve("Power", pow, Color.SpringGreen, SymbolType.None) : null;
-            LineItem altitudeCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Altitude)
+            var altitudeCurve = Extensions.IsFlagSet(sessionDataList.CurrentSMode, Smode.Altitude)
                 ? (myPane.AddCurve("Altitude", altitude, Color.Blue, SymbolType.None)) : null;
 
            

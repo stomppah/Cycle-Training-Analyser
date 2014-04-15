@@ -88,14 +88,14 @@ namespace Analyser
 
         private static List<string> GetParamsList(string line, StreamReader file)
         {
-            int paramIndex = 0;
-            List<string> paramsList = new List<string>();
+            var paramIndex = 0;
+            var paramsList = new List<string>();
 
             while ((line = file.ReadLine()) != null && paramIndex < 22)
             {
                 if (paramIndex < 22)
                 {
-                    string paramValue = line.Split('=').ElementAt(1);
+                    var paramValue = line.Split('=').ElementAt(1);
                     paramsList.Add(paramValue);
                 }
 
@@ -109,17 +109,17 @@ namespace Analyser
             while ((line = file.ReadLine()) != null)
             {
                 // split variable space seperated text
-                string[] tempResults = Regex.Split(line, "\\s+");
+                var tempResults = Regex.Split(line, "\\s+");
 
                 //convert it to Int32 format
-                Int32[] stats = new Int32[tempResults.Length];
-                for (int i = 0; i < tempResults.Length; i++)
+                var stats = new Int32[tempResults.Length];
+                for (var i = 0; i < tempResults.Length; i++)
                 {
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                Smode smode = m_hrmDataSet.CurrentSMode;
-                SessionDataInterval interval = new SessionDataInterval();
+                var smode = m_hrmDataSet.CurrentSMode;
+                var interval = new SessionDataInterval();
 
                 interval.Bpm = stats[0];
 
