@@ -38,16 +38,16 @@ namespace Analyser
 
         private void UpdateHeaderInfo()
         {
-            versionLabel.Text = _currentSessionDataList.Version.ToString(CultureInfo.InvariantCulture);
-            monitorLabel.Text = _currentSessionDataList.Montior.ToString(CultureInfo.InvariantCulture);
-            if (smodeLabel != null) smodeLabel.Text = _currentSessionDataList.Smode.ToString(CultureInfo.InvariantCulture);
+            //versionLabel.Text = _currentSessionDataList.Version.ToString(CultureInfo.InvariantCulture);
+            //monitorLabel.Text = _currentSessionDataList.Montior.ToString(CultureInfo.InvariantCulture);
+            //if (smodeLabel != null) smodeLabel.Text = _currentSessionDataList.Smode.ToString(CultureInfo.InvariantCulture);
         }
 
         private void UpdateSummaryInfo()
         {
-            dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
-            startTimeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
-            lengthLabel.Text = _currentSessionDataList.Length.ToLongTimeString();
+            //dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
+            //startTimeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
+            //lengthLabel.Text = _currentSessionDataList.Length.ToLongTimeString();
         }
 
         private void UpdateDataGrid()

@@ -42,6 +42,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
     <Reference Include="ZedGraph">
       <HintPath>..\packages\ZedGraph.5.1.6\lib\net35-Client\ZedGraph.dll</HintPath>
     </Reference>
@@ -91,6 +94,13 @@
     <None Include="Data\Polar_exercise_files\2hourFixedEndurance\20101110.pdd" />
     <None Include="Data\Polar_exercise_files\Duncan Mullier.ppd" />
     <None Include="Data\Polar_exercise_files\Library\TT Race.ppl" />
+    <None Include="Data\V718_1_2011\11060401.hrm" />
+    <None Include="Data\V718_1_2011\11060402.hrm" />
+    <None Include="Data\V718_1_2011\11060403.hrm" />
+    <None Include="Data\V718_1_2011\11060404.hrm" />
+    <None Include="Data\V718_1_2011\11060405.hrm" />
+    <None Include="Data\V718_1_2011\11060406.hrm" />
+    <None Include="Data\V718_1_2011\20110604.pdd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -107,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <Content Include="license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
