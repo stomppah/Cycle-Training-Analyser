@@ -37,7 +37,7 @@ namespace Analyser
         public int maximumAltitude = 0;
         public int rowsOfDataRecorded = 0;
 
-        public DateTime getStartDateTime()
+        public DateTime GetStartDateTime()
         {
             return this.startDateTime;
         }
