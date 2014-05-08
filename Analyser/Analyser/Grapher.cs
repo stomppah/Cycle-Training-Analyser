@@ -92,12 +92,10 @@ namespace Analyser
             MyPane.Title.Text = "Test Cycle data plotting";
 
             // X Axis
-            MyPane.XAxis.Title.Text = "Time (seconds)";
-            MyPane.XAxis.Scale.Format = "HH:mm:ss.fff";
-            MyPane.XAxis.Type = AxisType.Date;
+            MyPane.XAxis.Title.Text = "Time";
 
             // Y Axis
-            MyPane.YAxis.Title.Text = "Some Units Here";
+            MyPane.YAxis.Title.Text = "";
         }
 
         private static void ResetAndUpdateIntervalData()

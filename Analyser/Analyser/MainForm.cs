@@ -27,8 +27,6 @@ namespace Analyser
         #region Update GUI
         private void UpdateGui()
         {
-            UpdateHeaderInfo();
-
             UpdateSummaryInfo();
 
             UpdateDataGrid();
@@ -36,17 +34,11 @@ namespace Analyser
             UpdateGraph();
         }
 
-        private void UpdateHeaderInfo()
-        {
-            //versionLabel.Text = _currentSessionDataList.Version.ToString(CultureInfo.InvariantCulture);
-            //monitorLabel.Text = _currentSessionDataList.Montior.ToString(CultureInfo.InvariantCulture);
-            //if (smodeLabel != null) smodeLabel.Text = _currentSessionDataList.Smode.ToString(CultureInfo.InvariantCulture);
-        }
-
         private void UpdateSummaryInfo()
         {
-            //dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
-            //startTimeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
+            nameLabel.Text = "Duncan Mullier";
+            dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
+            timeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
             //lengthLabel.Text = _currentSessionDataList.Length.ToLongTimeString();
         }
 
