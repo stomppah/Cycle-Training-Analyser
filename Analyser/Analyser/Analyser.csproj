@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExerciseSession.cs" />
     <Compile Include="FileManager.cs" />
     <Compile Include="Grapher.cs" />
     <Compile Include="SessionDataList.cs" />
