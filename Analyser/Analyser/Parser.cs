@@ -111,6 +111,7 @@ namespace Analyser
 
                 var interval = new SessionDataInterval {Bpm = stats[0]};
 
+                //TODO
                 if (stats.Length >= 5)
                 {
                     interval.Speed = stats[1] * 10;
@@ -122,6 +123,7 @@ namespace Analyser
                     
                 HrmDataSet.Add(interval);
             }
+
         }
     }
 }
