@@ -39,7 +39,17 @@ namespace Analyser
             nameLabel.Text = "Duncan Mullier";
             dateLabel.Text = _currentSessionDataList.Date.ToLongDateString();
             timeLabel.Text = _currentSessionDataList.StartTime.ToLongTimeString();
-            //lengthLabel.Text = _currentSessionDataList.Length.ToLongTimeString();
+            durationLabel.Text = _currentSessionDataList.Length.ToLocalTime().ToString();
+
+            int maxHr = _currentSessionDataList.MaxHr;
+            int minHr = _currentSessionDataList.RestHr;
+            int avgHr = (minHr + maxHr) / 2;
+
+            MaxHeartRateLabel.Text = maxHr.ToString(CultureInfo.InvariantCulture);
+            minHeartRateLabel.Text = minHr.ToString(CultureInfo.InvariantCulture);
+
+            averageHeartRateLabel.Text = avgHr.ToString(CultureInfo.InvariantCulture);
+
         }
 
         private void UpdateDataGrid()
