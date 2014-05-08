@@ -62,15 +62,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.totalDistanceLabel = new System.Windows.Forms.Label();
+            this.averageSpeedLabel = new System.Windows.Forms.Label();
+            this.maxSpeedLabel = new System.Windows.Forms.Label();
+            this.averageHeartRateLabel = new System.Windows.Forms.Label();
+            this.minHeartRateLabel = new System.Windows.Forms.Label();
+            this.MaxHeartRateLabel = new System.Windows.Forms.Label();
+            this.averagePowerLabel = new System.Windows.Forms.Label();
+            this.maxPowerLabel = new System.Windows.Forms.Label();
+            this.averageAltitudeLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.MainMenuStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -211,15 +213,15 @@
             // 
             // exerciseDataPanel
             // 
-            this.exerciseDataPanel.Controls.Add(this.label21);
-            this.exerciseDataPanel.Controls.Add(this.label20);
-            this.exerciseDataPanel.Controls.Add(this.label19);
-            this.exerciseDataPanel.Controls.Add(this.label18);
-            this.exerciseDataPanel.Controls.Add(this.label17);
-            this.exerciseDataPanel.Controls.Add(this.label16);
-            this.exerciseDataPanel.Controls.Add(this.label15);
-            this.exerciseDataPanel.Controls.Add(this.label14);
-            this.exerciseDataPanel.Controls.Add(this.label13);
+            this.exerciseDataPanel.Controls.Add(this.averageAltitudeLabel);
+            this.exerciseDataPanel.Controls.Add(this.maxPowerLabel);
+            this.exerciseDataPanel.Controls.Add(this.averagePowerLabel);
+            this.exerciseDataPanel.Controls.Add(this.MaxHeartRateLabel);
+            this.exerciseDataPanel.Controls.Add(this.minHeartRateLabel);
+            this.exerciseDataPanel.Controls.Add(this.averageHeartRateLabel);
+            this.exerciseDataPanel.Controls.Add(this.maxSpeedLabel);
+            this.exerciseDataPanel.Controls.Add(this.averageSpeedLabel);
+            this.exerciseDataPanel.Controls.Add(this.totalDistanceLabel);
             this.exerciseDataPanel.Controls.Add(this.summaryInfoGroup);
             this.exerciseDataPanel.Controls.Add(this.label9);
             this.exerciseDataPanel.Controls.Add(this.label8);
@@ -242,6 +244,8 @@
             // 
             this.summaryInfoGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.summaryInfoGroup.Controls.Add(this.nameLabel);
+            this.summaryInfoGroup.Controls.Add(this.label14);
             this.summaryInfoGroup.Controls.Add(this.checkedSmodeList);
             this.summaryInfoGroup.Controls.Add(this.durationLabel);
             this.summaryInfoGroup.Controls.Add(this.timeLabel);
@@ -271,10 +275,10 @@
             "Altitude",
             "Power",
             "Heart Rate",
-            "Imperial"});
-            this.checkedSmodeList.Location = new System.Drawing.Point(9, 191);
+            "Imperial Measurements?"});
+            this.checkedSmodeList.Location = new System.Drawing.Point(6, 208);
             this.checkedSmodeList.Name = "checkedSmodeList";
-            this.checkedSmodeList.Size = new System.Drawing.Size(245, 238);
+            this.checkedSmodeList.Size = new System.Drawing.Size(245, 148);
             this.checkedSmodeList.TabIndex = 22;
             // 
             // durationLabel
@@ -283,7 +287,7 @@
             this.durationLabel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.durationLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.durationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.durationLabel.Location = new System.Drawing.Point(92, 134);
+            this.durationLabel.Location = new System.Drawing.Point(95, 163);
             this.durationLabel.Name = "durationLabel";
             this.durationLabel.Size = new System.Drawing.Size(16, 19);
             this.durationLabel.TabIndex = 21;
@@ -295,7 +299,7 @@
             this.timeLabel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeLabel.Location = new System.Drawing.Point(92, 90);
+            this.timeLabel.Location = new System.Drawing.Point(95, 119);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(16, 19);
             this.timeLabel.TabIndex = 20;
@@ -307,7 +311,7 @@
             this.dateLabel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.dateLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateLabel.Location = new System.Drawing.Point(92, 48);
+            this.dateLabel.Location = new System.Drawing.Point(95, 77);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(16, 19);
             this.dateLabel.TabIndex = 19;
@@ -317,7 +321,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(6, 136);
+            this.label12.Location = new System.Drawing.Point(12, 163);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(70, 17);
             this.label12.TabIndex = 18;
@@ -328,7 +332,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(37, 90);
+            this.label11.Location = new System.Drawing.Point(40, 119);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(43, 17);
             this.label11.TabIndex = 17;
@@ -339,7 +343,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(37, 48);
+            this.label10.Location = new System.Drawing.Point(40, 77);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 17);
             this.label10.TabIndex = 16;
@@ -436,122 +440,145 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Total Distance:";
             // 
-            // label13
+            // totalDistanceLabel
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(120, 569);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(16, 19);
-            this.label13.TabIndex = 22;
-            this.label13.Text = "-";
+            this.totalDistanceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.totalDistanceLabel.AutoSize = true;
+            this.totalDistanceLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.totalDistanceLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.totalDistanceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalDistanceLabel.Location = new System.Drawing.Point(120, 569);
+            this.totalDistanceLabel.Name = "totalDistanceLabel";
+            this.totalDistanceLabel.Size = new System.Drawing.Size(16, 19);
+            this.totalDistanceLabel.TabIndex = 22;
+            this.totalDistanceLabel.Text = "-";
+            // 
+            // averageSpeedLabel
+            // 
+            this.averageSpeedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.averageSpeedLabel.AutoSize = true;
+            this.averageSpeedLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.averageSpeedLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.averageSpeedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.averageSpeedLabel.Location = new System.Drawing.Point(120, 605);
+            this.averageSpeedLabel.Name = "averageSpeedLabel";
+            this.averageSpeedLabel.Size = new System.Drawing.Size(16, 19);
+            this.averageSpeedLabel.TabIndex = 23;
+            this.averageSpeedLabel.Text = "-";
+            // 
+            // maxSpeedLabel
+            // 
+            this.maxSpeedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.maxSpeedLabel.AutoSize = true;
+            this.maxSpeedLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.maxSpeedLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.maxSpeedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxSpeedLabel.Location = new System.Drawing.Point(120, 653);
+            this.maxSpeedLabel.Name = "maxSpeedLabel";
+            this.maxSpeedLabel.Size = new System.Drawing.Size(16, 19);
+            this.maxSpeedLabel.TabIndex = 24;
+            this.maxSpeedLabel.Text = "-";
+            // 
+            // averageHeartRateLabel
+            // 
+            this.averageHeartRateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.averageHeartRateLabel.AutoSize = true;
+            this.averageHeartRateLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.averageHeartRateLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.averageHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.averageHeartRateLabel.Location = new System.Drawing.Point(510, 569);
+            this.averageHeartRateLabel.Name = "averageHeartRateLabel";
+            this.averageHeartRateLabel.Size = new System.Drawing.Size(16, 19);
+            this.averageHeartRateLabel.TabIndex = 25;
+            this.averageHeartRateLabel.Text = "-";
+            // 
+            // minHeartRateLabel
+            // 
+            this.minHeartRateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.minHeartRateLabel.AutoSize = true;
+            this.minHeartRateLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.minHeartRateLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.minHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minHeartRateLabel.Location = new System.Drawing.Point(510, 609);
+            this.minHeartRateLabel.Name = "minHeartRateLabel";
+            this.minHeartRateLabel.Size = new System.Drawing.Size(16, 19);
+            this.minHeartRateLabel.TabIndex = 26;
+            this.minHeartRateLabel.Text = "-";
+            // 
+            // MaxHeartRateLabel
+            // 
+            this.MaxHeartRateLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.MaxHeartRateLabel.AutoSize = true;
+            this.MaxHeartRateLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.MaxHeartRateLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.MaxHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaxHeartRateLabel.Location = new System.Drawing.Point(510, 657);
+            this.MaxHeartRateLabel.Name = "MaxHeartRateLabel";
+            this.MaxHeartRateLabel.Size = new System.Drawing.Size(16, 19);
+            this.MaxHeartRateLabel.TabIndex = 27;
+            this.MaxHeartRateLabel.Text = "-";
+            // 
+            // averagePowerLabel
+            // 
+            this.averagePowerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.averagePowerLabel.AutoSize = true;
+            this.averagePowerLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.averagePowerLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.averagePowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.averagePowerLabel.Location = new System.Drawing.Point(810, 566);
+            this.averagePowerLabel.Name = "averagePowerLabel";
+            this.averagePowerLabel.Size = new System.Drawing.Size(16, 19);
+            this.averagePowerLabel.TabIndex = 28;
+            this.averagePowerLabel.Text = "-";
+            // 
+            // maxPowerLabel
+            // 
+            this.maxPowerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxPowerLabel.AutoSize = true;
+            this.maxPowerLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.maxPowerLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.maxPowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxPowerLabel.Location = new System.Drawing.Point(810, 605);
+            this.maxPowerLabel.Name = "maxPowerLabel";
+            this.maxPowerLabel.Size = new System.Drawing.Size(16, 19);
+            this.maxPowerLabel.TabIndex = 29;
+            this.maxPowerLabel.Text = "-";
+            // 
+            // averageAltitudeLabel
+            // 
+            this.averageAltitudeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.averageAltitudeLabel.AutoSize = true;
+            this.averageAltitudeLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.averageAltitudeLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.averageAltitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.averageAltitudeLabel.Location = new System.Drawing.Point(810, 653);
+            this.averageAltitudeLabel.Name = "averageAltitudeLabel";
+            this.averageAltitudeLabel.Size = new System.Drawing.Size(16, 19);
+            this.averageAltitudeLabel.TabIndex = 30;
+            this.averageAltitudeLabel.Text = "-";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.nameLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Location = new System.Drawing.Point(95, 35);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(16, 19);
+            this.nameLabel.TabIndex = 24;
+            this.nameLabel.Text = "-";
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(120, 605);
+            this.label14.Location = new System.Drawing.Point(33, 35);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(16, 19);
+            this.label14.Size = new System.Drawing.Size(49, 17);
             this.label14.TabIndex = 23;
-            this.label14.Text = "-";
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(120, 653);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(16, 19);
-            this.label15.TabIndex = 24;
-            this.label15.Text = "-";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(510, 569);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(16, 19);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "-";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label17.AutoSize = true;
-            this.label17.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(510, 609);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(16, 19);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "-";
-            // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(510, 657);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(16, 19);
-            this.label18.TabIndex = 27;
-            this.label18.Text = "-";
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(810, 566);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(16, 19);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "-";
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(810, 605);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(16, 19);
-            this.label20.TabIndex = 29;
-            this.label20.Text = "-";
-            // 
-            // label21
-            // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(810, 653);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(16, 19);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "-";
+            this.label14.Text = "Name";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
@@ -614,15 +641,17 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label averageAltitudeLabel;
+        private System.Windows.Forms.Label maxPowerLabel;
+        private System.Windows.Forms.Label averagePowerLabel;
+        private System.Windows.Forms.Label MaxHeartRateLabel;
+        private System.Windows.Forms.Label minHeartRateLabel;
+        private System.Windows.Forms.Label averageHeartRateLabel;
+        private System.Windows.Forms.Label maxSpeedLabel;
+        private System.Windows.Forms.Label averageSpeedLabel;
+        private System.Windows.Forms.Label totalDistanceLabel;
+        private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
     }
 }
 
