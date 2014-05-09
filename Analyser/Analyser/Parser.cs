@@ -118,7 +118,7 @@ namespace Analyser
                 TimeSpan span = TimeSpan.Parse("0:00:0" + ExerciseSession.Interval.ToString(CultureInfo.InvariantCulture));
                 timestamp = timestamp + span;
 
-                ExerciseSession.TimeIntervalList.Add(timestamp);
+                ExerciseSession.TimeIntervalList.Add(timestamp.ToShortTimeString());
                 ExerciseSession.HeartRateList.Add(stats[0]);
                 
                 #region Massive switch statement

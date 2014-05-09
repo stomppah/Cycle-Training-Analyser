@@ -92,7 +92,7 @@ namespace Analyser
             for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
                 var interval = new Interval();
-                interval.Time = _currentExerciseSession.TimeIntervalList[index].ToLongTimeString();
+                interval.Time = _currentExerciseSession.TimeIntervalList[index];
                 interval.Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture);
                 interval.Speed = FlagSet(Smode.Speed)
                     ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture)

@@ -26,6 +26,7 @@ namespace Analyser
             _exerciseSession = exerciseSession;
             _myPane = zedGraphControl.GraphPane;
 
+            GenerateLists();
             RemovePreviousPlots();
 
             SetupGraphAxes();
@@ -34,6 +35,27 @@ namespace Analyser
             zedGraphControl.AxisChange();
             zedGraphControl.Invalidate();
             zedGraphControl.Refresh();
+        }
+
+        private static void GenerateLists()
+        {
+            _bpmPointPairList = new PointPairList();
+            SpeedPointPairList = new PointPairList();
+            _cadencePointPairList = new PointPairList();
+            _altitudePointPairList = new PointPairList();
+            _powerPointPairList = new PointPairList();
+            _powerBalancePointPairList = new PointPairList();
+
+            for (int index = 0; index < _exerciseSession.TimeIntervalList.Count; index++)
+            {
+                double time = (double) index;
+                _bpmPointPairList.Add(time, _exerciseSession.HeartRateList[index]);
+                SpeedPointPairList.Add(time, _exerciseSession.SpeedList[index]);
+                _cadencePointPairList.Add(time, _exerciseSession.CadenceList[index]);
+                _altitudePointPairList.Add(time, _exerciseSession.AltitudeList[index]);
+                _powerPointPairList.Add(time, _exerciseSession.PowerList[index]);
+                _powerBalancePointPairList.Add(time, _exerciseSession.PowerBalanceList[index]);
+            }
         }
 
         private static void RemovePreviousPlots()
@@ -61,7 +83,7 @@ namespace Analyser
 
             // Generate a blue curve with circle symbols, and "Acceleration" in the legend
             myCurve = _myPane.AddCurve("Speed",
-               SpeedPointPairList, Color.Blue, SymbolType.Circle);
+               SpeedPointPairList, Color.Blue, SymbolType.HDash);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
@@ -69,7 +91,7 @@ namespace Analyser
 
             // Generate a green curve with square symbols, and "Distance" in the legend
             myCurve = _myPane.AddCurve("Altitude",
-               _altitudePointPairList, Color.Green, SymbolType.Square);
+               _altitudePointPairList, Color.Green, SymbolType.None);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the second Y axis
