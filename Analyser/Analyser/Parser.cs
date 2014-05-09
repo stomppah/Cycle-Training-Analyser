@@ -97,6 +97,10 @@ namespace Analyser
         private void ReadCoreData(string line, StreamReader file)
         {
             if (line == null) throw new ArgumentNullException("line");
+            int totalBpm = 0;
+            int totalSpeed = 0;
+            int totalAltitude = 0;
+            int totalPower = 0;
 
             while ((line = file.ReadLine()) != null)
             {
@@ -109,17 +113,18 @@ namespace Analyser
                 {
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
-
+                
                 ExerciseSession.HeartRateList.Add(stats[0]);
+                
+                #region Massive switch statement
                 switch (stats.Length)
                 {
                     case 2: 
                         if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
                         {
-                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                            ExerciseSession.SpeedList.Add(stats[1] * 10);
                         }
-
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
+                        if (Extensions.IsFlagSet((Smode) ExerciseSession.Smode, Smode.Cadence))
                         {
                             ExerciseSession.CadenceList.Add(stats[1]);
                         }
@@ -135,9 +140,8 @@ namespace Analyser
                     case 3:
                         if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
                         {
-                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                           ExerciseSession.SpeedList.Add(stats[1] * 10);
                         }
-
                         if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
                         {
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -154,9 +158,8 @@ namespace Analyser
                     case 4:
                         if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
                         {
-                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                           ExerciseSession.SpeedList.Add(stats[1] * 10);
                         }
-
                         if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
                         {
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -175,7 +178,6 @@ namespace Analyser
                         {
                             ExerciseSession.SpeedList.Add(stats[1] * 10);
                         }
-
                         if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
                         {
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -190,6 +192,7 @@ namespace Analyser
                         }
                         break;
                 }
+                #endregion
 
             }
 

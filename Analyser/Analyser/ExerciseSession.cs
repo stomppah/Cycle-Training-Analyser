@@ -1,4 +1,5 @@
-﻿using Analyser.Utilities;
+﻿using System.Linq;
+using Analyser.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -35,10 +36,12 @@ namespace Analyser
         public TimeSpan Timer1, Timer2, Timer3;
         #endregion
 
+        #region Contructors
         public ExerciseSession() { }
 
         public ExerciseSession(string[] paramsList)
         {
+            #region Extract data 
             Int32.TryParse(paramsList[0], out Version);
             Int32.TryParse(paramsList[1], out Montior);
             Int32.TryParse(paramsList[2], out Smode);
@@ -69,8 +72,18 @@ namespace Analyser
             Int32.TryParse(paramsList[19], out StartDelay);
             Int32.TryParse(paramsList[20], out Vo2Max);
             Int32.TryParse(paramsList[21], out Weight);
+            #endregion
         }
+        #endregion
 
         public Smode CurrentSMode { get { return (Smode) Smode; } }
+
+        public double AverageBpm { get { return HeartRateList.Sum() / HeartRateList.Count; } }
+
+        public double AverageSpeed { get { return SpeedList.Count > 0 ? SpeedList.Sum()/SpeedList.Count : 0; } }
+
+        public double AverageAltitude { get { return AltitudeList.Count > 0 ? AltitudeList.Sum()/AltitudeList.Count : 0; } }
+
+        public double AveragePower { get { return PowerList.Count > 0 ? PowerList.Sum()/PowerList.Count : 0; } }
     }
 }
