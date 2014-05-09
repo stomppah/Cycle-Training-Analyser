@@ -124,9 +124,8 @@ namespace Analyser
             if (column != null) 
                 column.Visible = FlagSet(Smode.Power);
 
-            // Automatically resize the visible rows.
-            dataGridView1.AutoSizeRowsMode =
-                DataGridViewAutoSizeRowsMode.DisplayedCells;
+            // Automatically resize the visible columns.
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
             // Set the DataGridView control's border.
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
