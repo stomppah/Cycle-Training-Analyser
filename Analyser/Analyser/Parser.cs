@@ -115,7 +115,7 @@ namespace Analyser
 
                 
                 // how do i add known timespan seconds to datetime
-                TimeSpan span = TimeSpan.Parse("0:00:0" + ExerciseSession.Interval.ToString(CultureInfo.InvariantCulture));
+                var span = TimeSpan.Parse("0:00:0" + ExerciseSession.Interval.ToString(CultureInfo.InvariantCulture));
                 timestamp = timestamp + span;
 
                 ExerciseSession.TimeIntervalList.Add(timestamp.ToShortTimeString());
