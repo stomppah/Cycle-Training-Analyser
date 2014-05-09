@@ -11,7 +11,7 @@ namespace Analyser
 
         internal static ExerciseSession LoadFile(OpenFileDialog openFileDialog1)
         {
-            var tempHrmDataList = new ExerciseSession();
+            var tempExerciseSession = new ExerciseSession();
             openFileDialog1.Title = Resources.FileManager_LoadFile_Load_cycle_training_data_;
             openFileDialog1.FileName = "";
 
@@ -23,7 +23,7 @@ namespace Analyser
 
                 Stream = File.Open(loadFile, FileMode.Open);
 
-                tempHrmDataList = Parser.ReadDataFromStream(Stream);
+                tempExerciseSession = Parser.ReadDataFromStream(Stream);
 
 
                 
@@ -31,7 +31,7 @@ namespace Analyser
 
             }
 
-            return tempHrmDataList;
+            return tempExerciseSession;
         }
     }
 }

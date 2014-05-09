@@ -29,6 +29,8 @@ namespace Analyser
         {
             UpdateSummaryInfo();
 
+            UpdateRecordedStats();
+
             UpdateDataGrid();
 
             UpdateGraph();
@@ -46,7 +48,11 @@ namespace Analyser
 
             MaxHeartRateLabel.Text = maxHr.ToString(CultureInfo.InvariantCulture);
             minHeartRateLabel.Text = minHr.ToString(CultureInfo.InvariantCulture);
+        }
 
+        private void UpdateRecordedStats()
+        {
+            //checkedSmodeList.
         }
 
         private void UpdateDataGrid()

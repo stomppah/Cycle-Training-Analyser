@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Analyser.Utilities;
 
 namespace Analyser
 {
     internal class Parser
     {
-        internal ExerciseSession HrmDataSet;
+        internal ExerciseSession ExerciseSession;
         internal int GuessMaxColumns = 10;
 
         public ExerciseSession ReadDataFromStream(Stream stream)
@@ -28,7 +29,7 @@ namespace Analyser
                       {
                           case  "[Params]":
                               List<string> paramsList = GetParamsList(line, file);
-                              HrmDataSet = new ExerciseSession(paramsList.ToArray());
+                              ExerciseSession = new ExerciseSession(paramsList.ToArray());
                               break;
                           case "[Note]":
                               //TODO
@@ -70,7 +71,7 @@ namespace Analyser
                }
             }
 
-            return HrmDataSet;
+            return ExerciseSession;
         }
 
         private static List<string> GetParamsList(string line, StreamReader file)
@@ -109,17 +110,87 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                //TODO
-                //if (stats.Length >= 5)
-                //{
-                //    interval.Speed = stats[1] * 10;
-                //    interval.Cadence = stats[2];
-                //    interval.Altitude = stats[3];
-                //    interval.Power = stats[4];
-                //    interval.PowerBalance = stats[5];
-                //}
-                    
-                //HrmDataSet.Add(interval);
+                ExerciseSession.HeartRateList.Add(stats[0]);
+                switch (stats.Length)
+                {
+                    case 2: 
+                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
+                        {
+                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                        }
+
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
+                        {
+                            ExerciseSession.CadenceList.Add(stats[1]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
+                        {
+                            ExerciseSession.AltitudeList.Add(stats[1]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
+                        {
+                            ExerciseSession.PowerList.Add(stats[1]);
+                        }
+                        break;
+                    case 3:
+                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
+                        {
+                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                        }
+
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
+                        {
+                            ExerciseSession.CadenceList.Add(stats[2]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
+                        {
+                            ExerciseSession.AltitudeList.Add(stats[2]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
+                        {
+                            ExerciseSession.PowerList.Add(stats[2]);
+                        }
+                        break;
+                    case 4:
+                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
+                        {
+                           ExerciseSession.SpeedList.Add(stats[1] * 10); 
+                        }
+
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
+                        {
+                            ExerciseSession.CadenceList.Add(stats[2]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
+                        {
+                            ExerciseSession.AltitudeList.Add(stats[3]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
+                        {
+                            ExerciseSession.PowerList.Add(stats[3]);
+                        }
+                        break;
+                    case 5:
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
+                        {
+                            ExerciseSession.SpeedList.Add(stats[1] * 10);
+                        }
+
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
+                        {
+                            ExerciseSession.CadenceList.Add(stats[2]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
+                        {
+                            ExerciseSession.AltitudeList.Add(stats[3]);
+                        }
+                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
+                        {
+                            ExerciseSession.PowerList.Add(stats[4]);
+                        }
+                        break;
+                }
+
             }
 
         }
