@@ -2,13 +2,15 @@
 using System.Globalization;
 using System.Windows.Forms;
 using Analyser.Utilities;
+using System.Collections.Generic;
 
 namespace Analyser
 {
     public partial class MainForm : Form
     {
         private ExerciseSession _currentExerciseSession = new ExerciseSession();
-        
+        private List<Interval> intervals = new List<Interval>();
+
         public MainForm()
         {
             InitializeComponent();
@@ -82,7 +84,50 @@ namespace Analyser
 
         private void UpdateDataGrid()
         {
-            dataGridView1.DataSource = _currentExerciseSession;
+
+            SetupColumns();
+
+            for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
+            {
+                intervals.Add(new Interval()
+                {
+                    Bpm = _currentExerciseSession.HeartRateList[index], 
+                    Speed = FlagSet(Smode.Speed) ? _currentExerciseSession.SpeedList[index] : 0,
+                    Cadence = FlagSet(Smode.Cadence) ? _currentExerciseSession.CadenceList[index] : 0,
+                    Altitude = FlagSet(Smode.Altitude) ? _currentExerciseSession.AltitudeList[index] : 0,
+                    Power = FlagSet(Smode.PowerOutput) ? _currentExerciseSession.PowerList[index] : 0
+                });
+            }
+
+            dataGridView1.DataSource = intervals;
+        }
+
+        private void SetupColumns()
+        {
+            // Automatically generate the DataGridView columns.
+            dataGridView1.AutoGenerateColumns = true;
+
+            //if (!FlagSet(Smode.Speed))
+            //{
+            //    dataGridView1.Columns.Remove("Speed");
+            //}
+            //if (!FlagSet(Smode.Cadence))
+            //{
+            //    dataGridView1.Columns.Remove("Cadence");
+            //}
+            //if (!FlagSet(Smode.Altitude))
+            //{
+            //    dataGridView1.Columns.Remove("Altitude");
+            //}
+            //if (!FlagSet(Smode.PowerOutput))
+            //{
+            //    dataGridView1.Columns.Remove("Power");
+            //}
+        }
+
+        private bool FlagSet(Smode smode)
+        {
+            return Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, smode);
         }
 
         private void UpdateGraph()
@@ -94,5 +139,15 @@ namespace Analyser
         }
         #endregion
 
+    }
+
+    class Interval
+    {
+        public DateTime Time { get; set; }
+        public int Bpm { get; set; }
+        public int Speed { get; set; }
+        public int Cadence { get; set; }
+        public int Altitude { get; set; }
+        public int Power { get; set; }
     }
 }

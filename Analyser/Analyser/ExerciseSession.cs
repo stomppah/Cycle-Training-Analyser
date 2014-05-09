@@ -1,24 +1,27 @@
 ﻿using System.Linq;
+using System.Text;
 using Analyser.Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 
 namespace Analyser
 {
     class ExerciseSession
     {
         #region [Params]
-        public List<DateTime> TimeIntervalList = new List<DateTime>();
-        public List<int> HeartRateList = new List<int>();
-        public List<int> SpeedList = new List<int>();
-        public List<int> CadenceList = new List<int>();
-        public List<int> AltitudeList = new List<int>();
-        public List<int> PowerList = new List<int>();
-        public List<int> PowerBalanceList = new List<int>();
+        public BindingList<DateTime> TimeIntervalList = new BindingList<DateTime>();
+        public BindingList<int> HeartRateList = new BindingList<int>();
+        public BindingList<int> SpeedList = new BindingList<int>();
+        public BindingList<int> CadenceList = new BindingList<int>();
+        public BindingList<int> AltitudeList = new BindingList<int>();
+        public BindingList<int> PowerList = new BindingList<int>();
+        public BindingList<int> PowerBalanceList = new BindingList<int>();
+        public Smode Flags;
         public int 
             Version, 
             Montior, 
-            Smode, 
             Interval, 
             Upper1, 
             Lower1, 
@@ -44,7 +47,8 @@ namespace Analyser
             #region Extract data 
             Int32.TryParse(paramsList[0], out Version);
             Int32.TryParse(paramsList[1], out Montior);
-            Int32.TryParse(paramsList[2], out Smode);
+
+            Flags = (Smode)Convert.ToInt32(paramsList[2], 2);
 
             int year, month, day;
             Int32.TryParse(paramsList[3].Substring(0, 4), out year);
@@ -76,7 +80,7 @@ namespace Analyser
         }
         #endregion
 
-        public Smode CurrentSMode { get { return (Smode) Smode; } }
+        public Smode CurrentSMode { get { return Flags; } }
 
         public double AverageBpm { get { return HeartRateList.Sum() / HeartRateList.Count; } }
 

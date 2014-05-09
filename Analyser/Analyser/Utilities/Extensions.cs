@@ -17,7 +17,6 @@ namespace Analyser.Utilities
             return (bitmask & flag) != 0;
         }
 
-
     }
 
 }

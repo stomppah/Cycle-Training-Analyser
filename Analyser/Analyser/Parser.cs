@@ -120,76 +120,60 @@ namespace Analyser
                 switch (stats.Length)
                 {
                     case 2: 
-                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
-                        {
+                        if(Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
                             ExerciseSession.SpeedList.Add(stats[1] * 10);
-                        }
-                        if (Extensions.IsFlagSet((Smode) ExerciseSession.Smode, Smode.Cadence))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[1]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[1]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
                             ExerciseSession.PowerList.Add(stats[1]);
-                        }
+
                         break;
                     case 3:
-                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
-                        {
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
                            ExerciseSession.SpeedList.Add(stats[1] * 10);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[2]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
                             ExerciseSession.PowerList.Add(stats[2]);
-                        }
+
                         break;
                     case 4:
-                        if(Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
-                        {
+                        if(Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
                            ExerciseSession.SpeedList.Add(stats[1] * 10);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[3]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
                             ExerciseSession.PowerList.Add(stats[3]);
-                        }
+
                         break;
                     case 5:
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Speed))
-                        {
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
                             ExerciseSession.SpeedList.Add(stats[1] * 10);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Cadence))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.Altitude))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[3]);
-                        }
-                        if (Extensions.IsFlagSet((Smode)ExerciseSession.Smode, Smode.PowerOutput))
-                        {
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
                             ExerciseSession.PowerList.Add(stats[4]);
-                        }
+
                         break;
                 }
                 #endregion
