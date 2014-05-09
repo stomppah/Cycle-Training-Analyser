@@ -72,7 +72,7 @@ namespace Analyser
             {
                 checkedSmodeList.SetItemChecked(3, true);
             }
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.PowerOutput))
+            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Power))
             {
                 checkedSmodeList.SetItemChecked(4, true);
             }
@@ -85,44 +85,51 @@ namespace Analyser
         private void UpdateDataGrid()
         {
 
-            SetupColumns();
+            
+
+            dataGridView1.AutoGenerateColumns = true;
 
             for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
                 intervals.Add(new Interval()
                 {
-                    Bpm = _currentExerciseSession.HeartRateList[index], 
-                    Speed = FlagSet(Smode.Speed) ? _currentExerciseSession.SpeedList[index] : 0,
-                    Cadence = FlagSet(Smode.Cadence) ? _currentExerciseSession.CadenceList[index] : 0,
-                    Altitude = FlagSet(Smode.Altitude) ? _currentExerciseSession.AltitudeList[index] : 0,
-                    Power = FlagSet(Smode.PowerOutput) ? _currentExerciseSession.PowerList[index] : 0
+                    Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture),
+                    Speed = FlagSet(Smode.Speed) ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture) : "-",
+                    Cadence = FlagSet(Smode.Cadence) ? _currentExerciseSession.CadenceList[index].ToString(CultureInfo.InvariantCulture) : "-",
+                    Altitude = FlagSet(Smode.Altitude) ? _currentExerciseSession.AltitudeList[index].ToString(CultureInfo.InvariantCulture) : "-",
+                    Power = FlagSet(Smode.Power) ? _currentExerciseSession.PowerList[index].ToString(CultureInfo.InvariantCulture) : "-"
                 });
             }
-
+            
             dataGridView1.DataSource = intervals;
+
+            SetupColumns();
         }
 
         private void SetupColumns()
         {
-            // Automatically generate the DataGridView columns.
-            dataGridView1.AutoGenerateColumns = true;
+            var dataGridViewColumn = dataGridView1.Columns["Speed"];
+            if (dataGridViewColumn != null) 
+                dataGridViewColumn.Visible = FlagSet(Smode.Speed);
+            
+            var gridViewColumn = dataGridView1.Columns["Cadence"];
+            if (gridViewColumn != null)
+                gridViewColumn.Visible = FlagSet(Smode.Cadence);
+            
+            var viewColumn = dataGridView1.Columns["Altitude"];
+            if (viewColumn != null)
+                viewColumn.Visible = FlagSet(Smode.Altitude);
+            
+            var column = dataGridView1.Columns["Power"];
+            if (column != null) 
+                column.Visible = FlagSet(Smode.Power);
 
-            //if (!FlagSet(Smode.Speed))
-            //{
-            //    dataGridView1.Columns.Remove("Speed");
-            //}
-            //if (!FlagSet(Smode.Cadence))
-            //{
-            //    dataGridView1.Columns.Remove("Cadence");
-            //}
-            //if (!FlagSet(Smode.Altitude))
-            //{
-            //    dataGridView1.Columns.Remove("Altitude");
-            //}
-            //if (!FlagSet(Smode.PowerOutput))
-            //{
-            //    dataGridView1.Columns.Remove("Power");
-            //}
+            // Automatically resize the visible rows.
+            dataGridView1.AutoSizeRowsMode =
+                DataGridViewAutoSizeRowsMode.DisplayedCells;
+
+            // Set the DataGridView control's border.
+            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
         }
 
         private bool FlagSet(Smode smode)
@@ -144,10 +151,10 @@ namespace Analyser
     class Interval
     {
         public DateTime Time { get; set; }
-        public int Bpm { get; set; }
-        public int Speed { get; set; }
-        public int Cadence { get; set; }
-        public int Altitude { get; set; }
-        public int Power { get; set; }
+        public string Bpm { get; set; }
+        public string Speed { get; set; }
+        public string Cadence { get; set; }
+        public string Altitude { get; set; }
+        public string Power { get; set; }
     }
 }

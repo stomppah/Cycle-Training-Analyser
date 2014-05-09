@@ -129,7 +129,7 @@ namespace Analyser
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[1]);
 
-                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power))
                             ExerciseSession.PowerList.Add(stats[1]);
 
                         break;
@@ -143,7 +143,7 @@ namespace Analyser
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[2]);
 
-                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power))
                             ExerciseSession.PowerList.Add(stats[2]);
 
                         break;
@@ -157,7 +157,7 @@ namespace Analyser
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[3]);
 
-                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power))
                             ExerciseSession.PowerList.Add(stats[3]);
 
                         break;
@@ -171,7 +171,7 @@ namespace Analyser
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
                             ExerciseSession.AltitudeList.Add(stats[3]);
 
-                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput))
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power))
                             ExerciseSession.PowerList.Add(stats[4]);
 
                         break;

@@ -51,7 +51,7 @@ namespace Analyser
             var cadanceCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence)
                 ? MyPane.AddCurve("Cadence", CadencePointPairList, Color.Yellow, SymbolType.None)
                 : null;
-            var powerCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput)
+            var powerCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power)
                 ? MyPane.AddCurve("Power", PowerPointPairList, Color.SpringGreen, SymbolType.None)
                 : null;
             var altitudeCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude)
