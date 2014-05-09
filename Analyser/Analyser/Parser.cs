@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -97,10 +98,8 @@ namespace Analyser
         private void ReadCoreData(string line, StreamReader file)
         {
             if (line == null) throw new ArgumentNullException("line");
-            int totalBpm = 0;
-            int totalSpeed = 0;
-            int totalAltitude = 0;
-            int totalPower = 0;
+
+            var timestamp = new DateTime();
 
             while ((line = file.ReadLine()) != null)
             {
@@ -113,7 +112,13 @@ namespace Analyser
                 {
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
+
                 
+                // how do i add known timespan seconds to datetime
+                TimeSpan span = TimeSpan.Parse("0:00:0" + ExerciseSession.Interval.ToString(CultureInfo.InvariantCulture));
+                timestamp = timestamp + span;
+
+                ExerciseSession.TimeIntervalList.Add(timestamp);
                 ExerciseSession.HeartRateList.Add(stats[0]);
                 
                 #region Massive switch statement

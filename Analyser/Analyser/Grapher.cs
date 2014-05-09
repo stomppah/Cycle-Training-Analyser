@@ -5,36 +5,30 @@ using ZedGraph;
 
 namespace Analyser
 {
-    internal class Grapher
+    public class Grapher
     {
-        // GraphPane object holds one or more curve objects (or plots)
-        internal static GraphPane MyPane;
-        internal static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
-        internal static ExerciseSession ExerciseSession;
-        internal static PointPairList AltitudePointPairList,
-            BpmPointPairList,
-            CadencePointPairList,
-            PowerPointPairList,
+        //// GraphPane object holds one or more curve objects (or plots)
+        private static GraphPane _myPane;
+        private static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
+        private static ExerciseSession _exerciseSession;
+        private static PointPairList _altitudePointPairList,
+            _bpmPointPairList,
+            _cadencePointPairList,
+            _powerPointPairList,
             SpeedPointPairList,
-            PowerBalancePointPairList;
+            _powerBalancePointPairList;
 
-        internal static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref ExerciseSession exerciseSession)
+        public static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref ExerciseSession exerciseSession)
         {
             if (zedGraphControl == null) throw new ArgumentNullException("zedGraphControl");
 
             // Update all fields from incoming data
-            ExerciseSession = exerciseSession;
-            MyPane = zedGraphControl.GraphPane;
-
-            ResetAndUpdateIntervalData();
+            _exerciseSession = exerciseSession;
+            _myPane = zedGraphControl.GraphPane;
 
             RemovePreviousPlots();
 
             SetupGraphAxes();
-
-            ResetPointPairListsFromIntervalData();
-
-            DrawDataToGraph();
 
             // I add all three functions just to be sure it refeshes the plot.   
             zedGraphControl.AxisChange();
@@ -42,84 +36,116 @@ namespace Analyser
             zedGraphControl.Refresh();
         }
 
-        private static void DrawDataToGraph()
-        {
-            var bpmCurve = MyPane.AddCurve("Bpm", BpmPointPairList, Color.Red, SymbolType.None);
-            var speedCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed)
-                ? MyPane.AddCurve("Speed", SpeedPointPairList, Color.RosyBrown, SymbolType.None)
-                : null;
-            var cadanceCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence)
-                ? MyPane.AddCurve("Cadence", CadencePointPairList, Color.Yellow, SymbolType.None)
-                : null;
-            var powerCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power)
-                ? MyPane.AddCurve("Power", PowerPointPairList, Color.SpringGreen, SymbolType.None)
-                : null;
-            var altitudeCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude)
-                ? (MyPane.AddCurve("Altitude", AltitudePointPairList, Color.Blue, SymbolType.None))
-                : null;
-
-            bpmCurve.Line.Width = 3.0F;
-            if (speedCurve != null)
-                speedCurve.Line.Width = 2.0F;
-            if (altitudeCurve != null)
-                altitudeCurve.Line.Width = 2.0F;
-            if (cadanceCurve != null)
-                cadanceCurve.Line.Width = 2.0F;
-            if (powerCurve != null)
-                powerCurve.Line.Width = 2.0F;
-        }
-
-        private static void ResetPointPairListsFromIntervalData()
-        {
-            // These lists hold the data for plotting X and Y arrays 
-            AltitudePointPairList = new PointPairList(XTime, YAltitude);
-            BpmPointPairList = new PointPairList(XTime, YBpm);
-            CadencePointPairList = new PointPairList(XTime, YCadance);
-            PowerPointPairList = new PointPairList(XTime, YPower);
-            PowerBalancePointPairList = new PointPairList(XTime, YPowerBalance);
-            SpeedPointPairList = new PointPairList(XTime, YSpeed);
-        }
-
         private static void RemovePreviousPlots()
         {
-            MyPane.CurveList.Clear();
+            _myPane.CurveList.Clear();
         }
 
         private static void SetupGraphAxes()
         {
-            MyPane.Title.Text = "Test Cycle data plotting";
-
-            // X Axis
-            MyPane.XAxis.Title.Text = "Time";
-
-            // Y Axis
-            MyPane.YAxis.Title.Text = "";
+            // Set the titles and axis labels
+            _myPane.Title.Text = "Demonstration of Multi Y Graph";
+            _myPane.XAxis.Title.Text = "Time";
+            _myPane.YAxis.Title.Text = "HR [bpm]";
+            _myPane.Y2Axis.Title.Text = "Speed [m/s]";
+            GenerateExample();
         }
 
-        private static void ResetAndUpdateIntervalData()
+        private static void GenerateExample()
         {
-            //XTime = new double[ListCount];
-            //YAltitude = new double[ListCount];
-            //YBpm = new double[ListCount];
-            //YSpeed = new double[ListCount];
-            //YPower = new double[ListCount];
-            //YCadance = new double[ListCount];
-            //YPowerBalance = new double[ListCount];
+            // Generate a red curve with diamond symbols, and "Velocity" in the legend
+            var myCurve = _myPane.AddCurve("HR",
+              _bpmPointPairList, Color.Red, SymbolType.Diamond);
+            // Fill the symbols with white
+            myCurve.Symbol.Fill = new Fill(Color.White);
 
-            //var index = 0;
+            // Generate a blue curve with circle symbols, and "Acceleration" in the legend
+            myCurve = _myPane.AddCurve("Speed",
+               SpeedPointPairList, Color.Blue, SymbolType.Circle);
+            // Fill the symbols with white
+            myCurve.Symbol.Fill = new Fill(Color.White);
+            // Associate this curve with the Y2 axis
+            myCurve.IsY2Axis = true;
 
-            //foreach (var interval in ExerciseSession.)
-            //{
-            //    XTime[index] = index;
-            //    YAltitude[index] = interval.Altitude;
-            //    YBpm[index] = interval.Bpm;
-            //    YCadance[index] = interval.Cadence;
-            //    YPower[index] = interval.Power;
-            //    YPowerBalance[index] = interval.PowerBalance;
-            //    YSpeed[index] = interval.Speed;
+            // Generate a green curve with square symbols, and "Distance" in the legend
+            myCurve = _myPane.AddCurve("Altitude",
+               _altitudePointPairList, Color.Green, SymbolType.Square);
+            // Fill the symbols with white
+            myCurve.Symbol.Fill = new Fill(Color.White);
+            // Associate this curve with the second Y axis
+            myCurve.YAxisIndex = 1;
 
-            //    index++;
-            //}
+            // Generate a Black curve with triangle symbols, and "Energy" in the legend
+            myCurve = _myPane.AddCurve("Cadence",
+               _cadencePointPairList, Color.Black, SymbolType.Triangle);
+            // Fill the symbols with white
+            myCurve.Symbol.Fill = new Fill(Color.White);
+            // Associate this curve with the Y2 axis
+            myCurve.IsY2Axis = true;
+            // Associate this curve with the second Y2 axis
+            myCurve.YAxisIndex = 1;
+
+            // Show the x axis grid
+            _myPane.XAxis.IsVisible = true; //IsShowGrid = true;
+
+            // Make the Y axis scale red
+            _myPane.YAxis.Scale.FontSpec.FontColor = Color.Red;
+            _myPane.YAxis.Title.FontSpec.FontColor = Color.Red;
+            // turn off the opposite tics so the Y tics don't show up on the Y2 axis
+            //myPane.YAxis.IsOppositeTic = false;
+            //myPane.YAxis.IsMinorOppositeTic = false;
+            // Don't display the Y zero line
+            //myPane.YAxis.IsZeroLine = false;
+            // Align the Y axis labels so they are flush to the axis
+            _myPane.YAxis.Scale.Align = AlignP.Inside;
+            //myPane.YAxis.Max = 100;
+
+            // Enable the Y2 axis display
+            _myPane.Y2Axis.IsVisible = true;
+            // Make the Y2 axis scale blue
+            _myPane.Y2Axis.Scale.FontSpec.FontColor = Color.Blue;
+            _myPane.Y2Axis.Title.FontSpec.FontColor = Color.Blue;
+            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
+            //myPane.Y2Axis.IsOppositeTic = false;
+            //myPane.Y2Axis.IsMinorOppositeTic = false;
+            // Display the Y2 axis grid lines
+            //myPane.Y2Axis.IsShowGrid = true;
+            // Align the Y2 axis labels so they are flush to the axis
+            _myPane.Y2Axis.Scale.Align = AlignP.Inside;
+            //myPane.Y2Axis.Min = 1.5;
+            //myPane.Y2Axis.Max = 3;
+
+            // Create a second Y Axis, green
+            YAxis yAxis3 = new YAxis("Altitude [m]");
+            _myPane.YAxisList.Add(yAxis3);
+            yAxis3.Scale.FontSpec.FontColor = Color.Green;
+            yAxis3.Title.FontSpec.FontColor = Color.Green;
+            yAxis3.Color = Color.Green;
+            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
+            //yAxis3.IsInsideTic = false;
+            //yAxis3.IsMinorInsideTic = false;
+            //yAxis3.IsOppositeTic = false;
+            //yAxis3.IsMinorOppositeTic = false;
+            // Align the Y2 axis labels so they are flush to the axis
+            yAxis3.Scale.Align = AlignP.Inside;
+
+            Y2Axis yAxis4 = new Y2Axis("Cadence [rpm]");
+            yAxis4.IsVisible = true;
+            _myPane.Y2AxisList.Add(yAxis4);
+            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
+            //yAxis4.IsInsideTic = false;
+            //yAxis4.IsMinorInsideTic = false;
+            //yAxis4.IsOppositeTic = false;
+            //yAxis4.IsMinorOppositeTic = false;
+            // Align the Y2 axis labels so they are flush to the axis
+            yAxis4.Scale.Align = AlignP.Inside;
+            yAxis4.Type = AxisType.Log;
+            //yAxis4.Min = 100;
+
+            // Fill the axis background with a gradient
+            _myPane.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
+
+            //myPane.AxisChange( CreateGraphics() );
         }
     }
 }

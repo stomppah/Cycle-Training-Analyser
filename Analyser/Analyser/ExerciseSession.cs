@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Analyser
 {
-    class ExerciseSession
+    public class ExerciseSession
     {
         #region [Params]
         public BindingList<DateTime> TimeIntervalList = new BindingList<DateTime>();

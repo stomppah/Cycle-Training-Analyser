@@ -92,6 +92,7 @@ namespace Analyser
             for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
                 var interval = new Interval();
+                interval.Time = _currentExerciseSession.TimeIntervalList[index].ToLongTimeString();
                 interval.Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture);
                 interval.Speed = FlagSet(Smode.Speed)
                     ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture)
@@ -163,7 +164,7 @@ namespace Analyser
 
     class Interval
     {
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         public string Bpm { get; set; }
         public string Speed { get; set; }
         public string Cadence { get; set; }
