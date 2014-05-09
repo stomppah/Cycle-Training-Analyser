@@ -8,10 +8,10 @@ namespace Analyser
 {
     internal class Parser
     {
-        internal SessionDataList HrmDataSet;
+        internal ExerciseSession HrmDataSet;
         internal int GuessMaxColumns = 10;
 
-        public SessionDataList ReadDataFromStream(Stream stream)
+        public ExerciseSession ReadDataFromStream(Stream stream)
         {
             // Read stream line by line
             if (stream != null) {
@@ -28,7 +28,7 @@ namespace Analyser
                       {
                           case  "[Params]":
                               List<string> paramsList = GetParamsList(line, file);
-                              HrmDataSet = new SessionDataList(paramsList.ToArray());
+                              HrmDataSet = new ExerciseSession(paramsList.ToArray());
                               break;
                           case "[Note]":
                               //TODO
@@ -109,19 +109,17 @@ namespace Analyser
                     Int32.TryParse(tempResults[i], out stats[i]);
                 }
 
-                var interval = new SessionDataInterval {Bpm = stats[0]};
-
                 //TODO
-                if (stats.Length >= 5)
-                {
-                    interval.Speed = stats[1] * 10;
-                    interval.Cadence = stats[2];
-                    interval.Altitude = stats[3];
-                    interval.Power = stats[4];
-                    interval.PowerBalance = stats[5];
-                }
+                //if (stats.Length >= 5)
+                //{
+                //    interval.Speed = stats[1] * 10;
+                //    interval.Cadence = stats[2];
+                //    interval.Altitude = stats[3];
+                //    interval.Power = stats[4];
+                //    interval.PowerBalance = stats[5];
+                //}
                     
-                HrmDataSet.Add(interval);
+                //HrmDataSet.Add(interval);
             }
 
         }

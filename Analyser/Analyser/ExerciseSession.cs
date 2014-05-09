@@ -1,45 +1,76 @@
-﻿using System;
+﻿using Analyser.Utilities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Analyser
 {
     class ExerciseSession
     {
-        private DateTime startDateTime;
-        public bool speedData = false;
-        public bool cadenceData = false;
-        public bool altitudeData = false;
-        public bool powerData = false;
-        public bool powerLeftRightData = false;
-        public bool powerPedallingData = false;
-        public bool heartRateOnlyData = false;
-        public bool imperialData = false;
-        public List<int> heartRateValues = new System.Collections.Generic.List<int>();
-        public List<int> speedValues = new System.Collections.Generic.List<int>();
-        public List<int> cadenceValues = new System.Collections.Generic.List<int>();
-        public List<int> altitudeValues = new System.Collections.Generic.List<int>();
-        public List<int> powerValues = new System.Collections.Generic.List<int>();
-        public List<int> powerLeftRightValues = new System.Collections.Generic.List<int>();
-        public List<int> powerPedallingValue = new System.Collections.Generic.List<int>();
-        public List<System.DateTime> timeIndexes = new System.Collections.Generic.List<System.DateTime>();
-        public double totalDistance = 0.0;
-        public double averageSpeed = 0.0;
-        public int maximumSpeed = 0;
-        public double averageHeartRate = 0.0;
-        public int maximumHeartRate = 0;
-        public int minimumHeartRate = 0;
-        public int averagePower = 0;
-        public int maximumPower = 0;
-        public double averageAltitude = 0.0;
-        public int maximumAltitude = 0;
-        public int rowsOfDataRecorded = 0;
+        #region [Params]
+        public List<DateTime> TimeIntervalList = new List<DateTime>();
+        public List<int> HeartRateList = new List<int>();
+        public List<int> SpeedList = new List<int>();
+        public List<int> CadenceList = new List<int>();
+        public List<int> AltitudeList = new List<int>();
+        public List<int> PowerList = new List<int>();
+        public List<int> PowerBalanceList = new List<int>();
+        public int 
+            Version, 
+            Montior, 
+            Smode, 
+            Interval, 
+            Upper1, 
+            Lower1, 
+            Upper2, 
+            Lower2, 
+            Upper3, 
+            Lower3, 
+            ActiveLimit, 
+            MaxHr, 
+            RestHr, 
+            StartDelay, 
+            Vo2Max, 
+            Weight;
+        public DateTime Date, StartTime, Length; 
+        public TimeSpan Timer1, Timer2, Timer3;
+        #endregion
 
-        public DateTime GetStartDateTime()
+        public ExerciseSession() { }
+
+        public ExerciseSession(string[] paramsList)
         {
-            return this.startDateTime;
+            Int32.TryParse(paramsList[0], out Version);
+            Int32.TryParse(paramsList[1], out Montior);
+            Int32.TryParse(paramsList[2], out Smode);
+
+            int year, month, day;
+            Int32.TryParse(paramsList[3].Substring(0, 4), out year);
+            Int32.TryParse(paramsList[3].Substring(4, 2), out month);
+            Int32.TryParse(paramsList[3].Substring(6, 2), out day);
+            Date = new DateTime(year, month, day);
+            DateTime.TryParse(paramsList[4], out StartTime);
+            DateTime.TryParse(paramsList[5], out Length);
+            
+            Int32.TryParse(paramsList[6], out Interval);
+            Int32.TryParse(paramsList[7], out Upper1);
+            Int32.TryParse(paramsList[8], out Lower1);
+            Int32.TryParse(paramsList[9], out Upper2);
+            Int32.TryParse(paramsList[10], out Lower2);
+            Int32.TryParse(paramsList[11], out Upper3);
+            Int32.TryParse(paramsList[12], out Lower3);
+
+            TimeSpan.TryParse(paramsList[13], out Timer1);
+            TimeSpan.TryParse(paramsList[14], out Timer2);
+            TimeSpan.TryParse(paramsList[15], out Timer3);
+            Int32.TryParse(paramsList[16], out ActiveLimit);
+            Int32.TryParse(paramsList[17], out MaxHr);
+            Int32.TryParse(paramsList[18], out RestHr);
+
+            Int32.TryParse(paramsList[19], out StartDelay);
+            Int32.TryParse(paramsList[20], out Vo2Max);
+            Int32.TryParse(paramsList[21], out Weight);
         }
+
+        public Smode CurrentSMode { get { return (Smode) Smode; } }
     }
 }

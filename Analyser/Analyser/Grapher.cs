@@ -10,8 +10,7 @@ namespace Analyser
         // GraphPane object holds one or more curve objects (or plots)
         internal static GraphPane MyPane;
         internal static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
-        internal static SessionDataList SessionDataList;
-        internal static int ListCount;
+        internal static ExerciseSession ExerciseSession;
         internal static PointPairList AltitudePointPairList,
             BpmPointPairList,
             CadencePointPairList,
@@ -19,13 +18,12 @@ namespace Analyser
             SpeedPointPairList,
             PowerBalancePointPairList;
 
-        internal static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref SessionDataList sessionDataList)
+        internal static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref ExerciseSession exerciseSession)
         {
             if (zedGraphControl == null) throw new ArgumentNullException("zedGraphControl");
 
             // Update all fields from incoming data
-            SessionDataList = sessionDataList;
-            ListCount = SessionDataList.Count;
+            ExerciseSession = exerciseSession;
             MyPane = zedGraphControl.GraphPane;
 
             ResetAndUpdateIntervalData();
@@ -47,16 +45,16 @@ namespace Analyser
         private static void DrawDataToGraph()
         {
             var bpmCurve = MyPane.AddCurve("Bpm", BpmPointPairList, Color.Red, SymbolType.None);
-            var speedCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Speed)
+            var speedCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed)
                 ? MyPane.AddCurve("Speed", SpeedPointPairList, Color.RosyBrown, SymbolType.None)
                 : null;
-            var cadanceCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Cadence)
+            var cadanceCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence)
                 ? MyPane.AddCurve("Cadence", CadencePointPairList, Color.Yellow, SymbolType.None)
                 : null;
-            var powerCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.PowerOutput)
+            var powerCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerOutput)
                 ? MyPane.AddCurve("Power", PowerPointPairList, Color.SpringGreen, SymbolType.None)
                 : null;
-            var altitudeCurve = Extensions.IsFlagSet(SessionDataList.CurrentSMode, Smode.Altitude)
+            var altitudeCurve = Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude)
                 ? (MyPane.AddCurve("Altitude", AltitudePointPairList, Color.Blue, SymbolType.None))
                 : null;
 
@@ -100,28 +98,28 @@ namespace Analyser
 
         private static void ResetAndUpdateIntervalData()
         {
-            XTime = new double[ListCount];
-            YAltitude = new double[ListCount];
-            YBpm = new double[ListCount];
-            YSpeed = new double[ListCount];
-            YPower = new double[ListCount];
-            YCadance = new double[ListCount];
-            YPowerBalance = new double[ListCount];
+            //XTime = new double[ListCount];
+            //YAltitude = new double[ListCount];
+            //YBpm = new double[ListCount];
+            //YSpeed = new double[ListCount];
+            //YPower = new double[ListCount];
+            //YCadance = new double[ListCount];
+            //YPowerBalance = new double[ListCount];
 
-            var index = 0;
+            //var index = 0;
 
-            foreach (var interval in SessionDataList)
-            {
-                XTime[index] = index;
-                YAltitude[index] = interval.Altitude;
-                YBpm[index] = interval.Bpm;
-                YCadance[index] = interval.Cadence;
-                YPower[index] = interval.Power;
-                YPowerBalance[index] = interval.PowerBalance;
-                YSpeed[index] = interval.Speed;
+            //foreach (var interval in ExerciseSession.)
+            //{
+            //    XTime[index] = index;
+            //    YAltitude[index] = interval.Altitude;
+            //    YBpm[index] = interval.Bpm;
+            //    YCadance[index] = interval.Cadence;
+            //    YPower[index] = interval.Power;
+            //    YPowerBalance[index] = interval.PowerBalance;
+            //    YSpeed[index] = interval.Speed;
 
-                index++;
-            }
+            //    index++;
+            //}
         }
     }
 }
