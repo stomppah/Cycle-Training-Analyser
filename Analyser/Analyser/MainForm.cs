@@ -91,14 +91,24 @@ namespace Analyser
 
             for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
-                intervals.Add(new Interval()
-                {
-                    Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture),
-                    Speed = FlagSet(Smode.Speed) ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture) : "-",
-                    Cadence = FlagSet(Smode.Cadence) ? _currentExerciseSession.CadenceList[index].ToString(CultureInfo.InvariantCulture) : "-",
-                    Altitude = FlagSet(Smode.Altitude) ? _currentExerciseSession.AltitudeList[index].ToString(CultureInfo.InvariantCulture) : "-",
-                    Power = FlagSet(Smode.Power) ? _currentExerciseSession.PowerList[index].ToString(CultureInfo.InvariantCulture) : "-"
-                });
+                var interval = new Interval();
+                interval.Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture);
+                interval.Speed = FlagSet(Smode.Speed)
+                    ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture)
+                    : "-";
+                interval.Cadence = FlagSet(Smode.Cadence)
+                    ? _currentExerciseSession.CadenceList[index].ToString(CultureInfo.InvariantCulture)
+                    : "-";
+                interval.Altitude = FlagSet(Smode.Altitude)
+                    ? _currentExerciseSession.AltitudeList[index].ToString(CultureInfo.InvariantCulture)
+                    : "-";
+                interval.Power = FlagSet(Smode.Power)
+                    ? _currentExerciseSession.PowerList[index].ToString(CultureInfo.InvariantCulture)
+                    : "-";
+                interval.PowerBalance = FlagSet(Smode.PowerBalance)
+                    ? _currentExerciseSession.PowerBalanceList[index].ToString(CultureInfo.InvariantCulture)
+                    : "-";
+                intervals.Add(interval);
             }
             
             dataGridView1.DataSource = intervals;
@@ -119,13 +129,17 @@ namespace Analyser
             var viewColumn = dataGridView1.Columns["Altitude"];
             if (viewColumn != null)
                 viewColumn.Visible = FlagSet(Smode.Altitude);
-            
+
             var column = dataGridView1.Columns["Power"];
-            if (column != null) 
+            if (column != null)
                 column.Visible = FlagSet(Smode.Power);
 
+            var balanceColumn = dataGridView1.Columns["PowerBalance"];
+            if (balanceColumn != null)
+                balanceColumn.Visible = FlagSet(Smode.PowerBalance);
+
             // Automatically resize the visible columns.
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // Set the DataGridView control's border.
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
@@ -155,5 +169,6 @@ namespace Analyser
         public string Cadence { get; set; }
         public string Altitude { get; set; }
         public string Power { get; set; }
+        public string PowerBalance { get; set; }
     }
 }

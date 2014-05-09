@@ -175,6 +175,25 @@ namespace Analyser
                             ExerciseSession.PowerList.Add(stats[4]);
 
                         break;
+                    case 6:
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
+                            ExerciseSession.SpeedList.Add(stats[1] * 10);
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
+                            ExerciseSession.CadenceList.Add(stats[2]);
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Altitude))
+                            ExerciseSession.AltitudeList.Add(stats[3]);
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Power))
+                            ExerciseSession.PowerList.Add(stats[4]);
+
+                        if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerBalance))
+                            ExerciseSession.PowerBalanceList.Add(stats[5]);
+
+                        //if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerIndex))
+                        
+                        break;
                 }
                 #endregion
 

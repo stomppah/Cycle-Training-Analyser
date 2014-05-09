@@ -36,6 +36,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.exerciseDataPanel = new System.Windows.Forms.Panel();
+            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.averageAltitudeLabel = new System.Windows.Forms.Label();
             this.maxPowerLabel = new System.Windows.Forms.Label();
             this.averagePowerLabel = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.averageSpeedLabel = new System.Windows.Forms.Label();
             this.totalDistanceLabel = new System.Windows.Forms.Label();
             this.summaryInfoGroup = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.nameLabel = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.checkedSmodeList = new System.Windows.Forms.CheckedListBox();
@@ -64,8 +66,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.MainMenuStrip.SuspendLayout();
             this.exerciseDataPanel.SuspendLayout();
             this.summaryInfoGroup.SuspendLayout();
@@ -78,7 +78,7 @@
             this.fileToolStripMenuItem});
             this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1015, 24);
+            this.MainMenuStrip.Size = new System.Drawing.Size(1163, 24);
             this.MainMenuStrip.TabIndex = 0;
             this.MainMenuStrip.Text = "menuStrip1";
             // 
@@ -128,8 +128,28 @@
             this.exerciseDataPanel.Location = new System.Drawing.Point(0, 24);
             this.exerciseDataPanel.Margin = new System.Windows.Forms.Padding(10);
             this.exerciseDataPanel.Name = "exerciseDataPanel";
-            this.exerciseDataPanel.Size = new System.Drawing.Size(1015, 705);
+            this.exerciseDataPanel.Size = new System.Drawing.Size(1163, 705);
             this.exerciseDataPanel.TabIndex = 6;
+            // 
+            // zedGraphControl1
+            // 
+            this.zedGraphControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.zedGraphControl1.BackColor = System.Drawing.Color.Transparent;
+            this.zedGraphControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.zedGraphControl1.Location = new System.Drawing.Point(457, 12);
+            this.zedGraphControl1.Name = "zedGraphControl1";
+            this.zedGraphControl1.ScrollGrace = 0D;
+            this.zedGraphControl1.ScrollMaxX = 0D;
+            this.zedGraphControl1.ScrollMaxY = 0D;
+            this.zedGraphControl1.ScrollMaxY2 = 0D;
+            this.zedGraphControl1.ScrollMinX = 0D;
+            this.zedGraphControl1.ScrollMinY = 0D;
+            this.zedGraphControl1.ScrollMinY2 = 0D;
+            this.zedGraphControl1.Size = new System.Drawing.Size(706, 588);
+            this.zedGraphControl1.TabIndex = 31;
+            this.zedGraphControl1.Visible = false;
             // 
             // averageAltitudeLabel
             // 
@@ -137,7 +157,7 @@
             this.averageAltitudeLabel.AutoSize = true;
             this.averageAltitudeLabel.BackColor = System.Drawing.SystemColors.Control;
             this.averageAltitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.averageAltitudeLabel.Location = new System.Drawing.Point(781, 673);
+            this.averageAltitudeLabel.Location = new System.Drawing.Point(929, 673);
             this.averageAltitudeLabel.Name = "averageAltitudeLabel";
             this.averageAltitudeLabel.Size = new System.Drawing.Size(0, 13);
             this.averageAltitudeLabel.TabIndex = 30;
@@ -148,7 +168,7 @@
             this.maxPowerLabel.AutoSize = true;
             this.maxPowerLabel.BackColor = System.Drawing.SystemColors.Control;
             this.maxPowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.maxPowerLabel.Location = new System.Drawing.Point(781, 639);
+            this.maxPowerLabel.Location = new System.Drawing.Point(929, 639);
             this.maxPowerLabel.Name = "maxPowerLabel";
             this.maxPowerLabel.Size = new System.Drawing.Size(0, 13);
             this.maxPowerLabel.TabIndex = 29;
@@ -159,7 +179,7 @@
             this.averagePowerLabel.AutoSize = true;
             this.averagePowerLabel.BackColor = System.Drawing.SystemColors.Control;
             this.averagePowerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.averagePowerLabel.Location = new System.Drawing.Point(781, 603);
+            this.averagePowerLabel.Location = new System.Drawing.Point(929, 603);
             this.averagePowerLabel.Name = "averagePowerLabel";
             this.averagePowerLabel.Size = new System.Drawing.Size(0, 13);
             this.averagePowerLabel.TabIndex = 28;
@@ -170,7 +190,7 @@
             this.MaxHeartRateLabel.AutoSize = true;
             this.MaxHeartRateLabel.BackColor = System.Drawing.SystemColors.Control;
             this.MaxHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.MaxHeartRateLabel.Location = new System.Drawing.Point(481, 673);
+            this.MaxHeartRateLabel.Location = new System.Drawing.Point(555, 673);
             this.MaxHeartRateLabel.Name = "MaxHeartRateLabel";
             this.MaxHeartRateLabel.Size = new System.Drawing.Size(0, 13);
             this.MaxHeartRateLabel.TabIndex = 27;
@@ -181,7 +201,7 @@
             this.minHeartRateLabel.AutoSize = true;
             this.minHeartRateLabel.BackColor = System.Drawing.SystemColors.Control;
             this.minHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.minHeartRateLabel.Location = new System.Drawing.Point(481, 639);
+            this.minHeartRateLabel.Location = new System.Drawing.Point(555, 639);
             this.minHeartRateLabel.Name = "minHeartRateLabel";
             this.minHeartRateLabel.Size = new System.Drawing.Size(0, 13);
             this.minHeartRateLabel.TabIndex = 26;
@@ -192,7 +212,7 @@
             this.averageHeartRateLabel.AutoSize = true;
             this.averageHeartRateLabel.BackColor = System.Drawing.SystemColors.Control;
             this.averageHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.averageHeartRateLabel.Location = new System.Drawing.Point(481, 603);
+            this.averageHeartRateLabel.Location = new System.Drawing.Point(555, 603);
             this.averageHeartRateLabel.Name = "averageHeartRateLabel";
             this.averageHeartRateLabel.Size = new System.Drawing.Size(0, 13);
             this.averageHeartRateLabel.TabIndex = 25;
@@ -248,13 +268,43 @@
             this.summaryInfoGroup.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.summaryInfoGroup.Location = new System.Drawing.Point(3, 3);
             this.summaryInfoGroup.Name = "summaryInfoGroup";
-            this.summaryInfoGroup.Size = new System.Drawing.Size(345, 597);
+            this.summaryInfoGroup.Size = new System.Drawing.Size(448, 597);
             this.summaryInfoGroup.TabIndex = 15;
             this.summaryInfoGroup.TabStop = false;
             this.summaryInfoGroup.Text = "Summary Info";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 204);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(432, 387);
+            this.dataGridView1.TabIndex = 31;
+            // 
             // nameLabel
             // 
+            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.nameLabel.AutoSize = true;
             this.nameLabel.BackColor = System.Drawing.SystemColors.Control;
             this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -265,6 +315,9 @@
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(9, 22);
@@ -290,11 +343,14 @@
             "Imperial Measurements?"});
             this.checkedSmodeList.Location = new System.Drawing.Point(6, 86);
             this.checkedSmodeList.Name = "checkedSmodeList";
-            this.checkedSmodeList.Size = new System.Drawing.Size(329, 112);
+            this.checkedSmodeList.Size = new System.Drawing.Size(432, 112);
             this.checkedSmodeList.TabIndex = 22;
             // 
             // durationLabel
             // 
+            this.durationLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.durationLabel.AutoSize = true;
             this.durationLabel.BackColor = System.Drawing.SystemColors.Control;
             this.durationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -305,6 +361,9 @@
             // 
             // timeLabel
             // 
+            this.timeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.timeLabel.AutoSize = true;
             this.timeLabel.BackColor = System.Drawing.SystemColors.Control;
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -315,6 +374,9 @@
             // 
             // dateLabel
             // 
+            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateLabel.AutoSize = true;
             this.dateLabel.BackColor = System.Drawing.SystemColors.Control;
             this.dateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -325,6 +387,9 @@
             // 
             // label12
             // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(186, 51);
@@ -336,6 +401,9 @@
             // 
             // label11
             // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(213, 22);
@@ -347,6 +415,9 @@
             // 
             // label10
             // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(16, 51);
@@ -360,7 +431,7 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(703, 676);
+            this.label9.Location = new System.Drawing.Point(851, 676);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(67, 13);
             this.label9.TabIndex = 14;
@@ -370,7 +441,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(707, 642);
+            this.label8.Location = new System.Drawing.Point(855, 642);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 13;
@@ -380,7 +451,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(708, 606);
+            this.label7.Location = new System.Drawing.Point(856, 606);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 12;
@@ -390,7 +461,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(377, 676);
+            this.label6.Location = new System.Drawing.Point(451, 676);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 13);
             this.label6.TabIndex = 11;
@@ -400,7 +471,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(380, 642);
+            this.label5.Location = new System.Drawing.Point(454, 642);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 10;
@@ -410,7 +481,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(378, 606);
+            this.label4.Location = new System.Drawing.Point(452, 606);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 9;
@@ -446,57 +517,11 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Total Distance";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 204);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(329, 387);
-            this.dataGridView1.TabIndex = 31;
-            // 
-            // zedGraphControl1
-            // 
-            this.zedGraphControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.zedGraphControl1.BackColor = System.Drawing.Color.Transparent;
-            this.zedGraphControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.zedGraphControl1.Location = new System.Drawing.Point(354, 12);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(661, 588);
-            this.zedGraphControl1.TabIndex = 31;
-            this.zedGraphControl1.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1015, 729);
+            this.ClientSize = new System.Drawing.Size(1163, 729);
             this.Controls.Add(this.exerciseDataPanel);
             this.Controls.Add(this.MainMenuStrip);
             this.MinimumSize = new System.Drawing.Size(1024, 726);
