@@ -1,4 +1,5 @@
 ﻿using System;
+using Analyser.Annotations;
 using Analyser.Utilities;
 using System.Drawing;
 using ZedGraph;
@@ -9,14 +10,16 @@ namespace Analyser
     {
         //// GraphPane object holds one or more curve objects (or plots)
         private static GraphPane _myPane;
-        private static double[] XTime, YAltitude, YBpm, YSpeed, YPower, YCadance, YPowerBalance;
         private static ExerciseSession _exerciseSession;
-        private static PointPairList _altitudePointPairList,
-            _bpmPointPairList,
-            _cadencePointPairList,
-            _powerPointPairList,
-            _speedPointPairList,
-            _powerBalancePointPairList;
+
+        private static readonly PointPairList AltitudePlotList = new PointPairList();
+        private static readonly PointPairList HrPlotList = new PointPairList();
+        private static readonly PointPairList CadencePlotList = new PointPairList();
+        private static readonly PointPairList PowerPlotList = new PointPairList();
+        private static readonly PointPairList SpeedPlotList = new PointPairList();
+        private static readonly PointPairList PowerBalancePlotList = new PointPairList();
+
+        private static bool _setupComplete = false;
 
         public static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref ExerciseSession exerciseSession)
         {
@@ -26,10 +29,12 @@ namespace Analyser
             _exerciseSession = exerciseSession;
             _myPane = zedGraphControl.GraphPane;
 
-            GenerateLists();
+            ResetAndRegenerateLists();
+
             RemovePreviousPlots();
 
-            SetupGraphAxes();
+            if (!_setupComplete)
+                SetupGraphAxes();
 
             // I add all three functions just to be sure it refeshes the plot.   
             zedGraphControl.AxisChange();
@@ -37,26 +42,30 @@ namespace Analyser
             zedGraphControl.Refresh();
         }
 
-        private static void GenerateLists()
+        private static void ResetAndRegenerateLists()
         {
-            _bpmPointPairList = new PointPairList();
-            _speedPointPairList = new PointPairList();
-            _cadencePointPairList = new PointPairList();
-            _altitudePointPairList = new PointPairList();
-            _powerPointPairList = new PointPairList();
-            _powerBalancePointPairList = new PointPairList();
+            #region Reset Lists
+            HrPlotList.Clear();
+            SpeedPlotList.Clear();
+            CadencePlotList.Clear();
+            AltitudePlotList.Clear();
+            PowerPlotList.Clear();
+            PowerBalancePlotList.Clear();
+            #endregion
 
-            for (int index = 0; index < _exerciseSession.TimeIntervalList.Count; index++)
+            #region Regenerate Lists
+            for (var index = 0; index < _exerciseSession.TimeIntervalList.Count; index++)
             {
-                double time = (double) index;
-                _bpmPointPairList.Add(time, _exerciseSession.HeartRateList[index]);
+                var time = _exerciseSession.TimeIntervalList[index];
+                HrPlotList.Add(time, _exerciseSession.HeartRateList[index]);
                 
-                if (_speedPointPairList.Count != 0) _speedPointPairList.Add(time, _exerciseSession.SpeedList[index]);
-                if (_cadencePointPairList.Count != 0) _cadencePointPairList.Add(time, _exerciseSession.CadenceList[index]);
-                if (_altitudePointPairList.Count != 0) _altitudePointPairList.Add(time, _exerciseSession.AltitudeList[index]);
-                if (_powerPointPairList.Count != 0) _powerPointPairList.Add(time, _exerciseSession.PowerList[index]);
-                if (_powerBalancePointPairList.Count != 0) _powerBalancePointPairList.Add(time, _exerciseSession.PowerBalanceList[index]);
+                if (Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Speed)) SpeedPlotList.Add(time, _exerciseSession.SpeedList[index]);
+                if (Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Cadence)) CadencePlotList.Add(time, _exerciseSession.CadenceList[index]);
+                if (Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Altitude)) AltitudePlotList.Add(time, _exerciseSession.AltitudeList[index]);
+                if (Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Power)) PowerPlotList.Add(time, _exerciseSession.PowerList[index]);
+                if (Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.PowerBalance)) PowerBalancePlotList.Add(time, _exerciseSession.PowerBalanceList[index]);
             }
+            #endregion
         }
 
         private static void RemovePreviousPlots()
@@ -71,6 +80,38 @@ namespace Analyser
             _myPane.XAxis.Title.Text = "Time";
             _myPane.YAxis.Title.Text = "HR [bpm]";
             _myPane.Y2Axis.Title.Text = "Speed [m/s]";
+
+            // Create a second Y Axis, green
+            YAxis yAxis3 = new YAxis("Altitude [m]");
+            _myPane.YAxisList.Add(yAxis3);
+            yAxis3.Scale.FontSpec.FontColor = Color.Green;
+            yAxis3.Title.FontSpec.FontColor = Color.Green;
+            yAxis3.Color = Color.Green;
+            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
+            //yAxis3.IsInsideTic = false;
+            //yAxis3.IsMinorInsideTic = false;
+            //yAxis3.IsOppositeTic = false;
+            //yAxis3.IsMinorOppositeTic = false;
+            // Align the Y2 axis labels so they are flush to the axis
+            yAxis3.Scale.Align = AlignP.Inside;
+
+            Y2Axis yAxis4 = new Y2Axis("Cadence [rpm]");
+            yAxis4.IsVisible = true;
+            _myPane.Y2AxisList.Add(yAxis4);
+            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
+            //yAxis4.IsInsideTic = false;
+            //yAxis4.IsMinorInsideTic = false;
+            //yAxis4.IsOppositeTic = false;
+            //yAxis4.IsMinorOppositeTic = false;
+            // Align the Y2 axis labels so they are flush to the axis
+            yAxis4.Scale.Align = AlignP.Inside;
+            yAxis4.Type = AxisType.Log;
+            //yAxis4.Min = 100;
+
+            // Fill the axis background with a gradient
+            _myPane.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
+
+            _setupComplete = true;
             GenerateExample();
         }
 
@@ -78,13 +119,13 @@ namespace Analyser
         {
             // Generate a red curve with diamond symbols, and "Velocity" in the legend
             var myCurve = _myPane.AddCurve("HR",
-              _bpmPointPairList, Color.Red, SymbolType.Diamond);
+              HrPlotList, Color.Red, SymbolType.HDash);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
 
             // Generate a blue curve with circle symbols, and "Acceleration" in the legend
             myCurve = _myPane.AddCurve("Speed",
-               _speedPointPairList, Color.Blue, SymbolType.HDash);
+               SpeedPlotList, Color.Blue, SymbolType.HDash);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
@@ -92,7 +133,7 @@ namespace Analyser
 
             // Generate a green curve with square symbols, and "Distance" in the legend
             myCurve = _myPane.AddCurve("Altitude",
-               _altitudePointPairList, Color.Green, SymbolType.None);
+               AltitudePlotList, Color.Green, SymbolType.None);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the second Y axis
@@ -100,7 +141,7 @@ namespace Analyser
 
             // Generate a Black curve with triangle symbols, and "Energy" in the legend
             myCurve = _myPane.AddCurve("Cadence",
-               _cadencePointPairList, Color.Black, SymbolType.Triangle);
+               CadencePlotList, Color.Black, SymbolType.Triangle);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
@@ -137,36 +178,6 @@ namespace Analyser
             _myPane.Y2Axis.Scale.Align = AlignP.Inside;
             //myPane.Y2Axis.Min = 1.5;
             //myPane.Y2Axis.Max = 3;
-
-            // Create a second Y Axis, green
-            YAxis yAxis3 = new YAxis("Altitude [m]");
-            _myPane.YAxisList.Add(yAxis3);
-            yAxis3.Scale.FontSpec.FontColor = Color.Green;
-            yAxis3.Title.FontSpec.FontColor = Color.Green;
-            yAxis3.Color = Color.Green;
-            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
-            //yAxis3.IsInsideTic = false;
-            //yAxis3.IsMinorInsideTic = false;
-            //yAxis3.IsOppositeTic = false;
-            //yAxis3.IsMinorOppositeTic = false;
-            // Align the Y2 axis labels so they are flush to the axis
-            yAxis3.Scale.Align = AlignP.Inside;
-
-            Y2Axis yAxis4 = new Y2Axis("Cadence [rpm]");
-            yAxis4.IsVisible = true;
-            _myPane.Y2AxisList.Add(yAxis4);
-            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
-            //yAxis4.IsInsideTic = false;
-            //yAxis4.IsMinorInsideTic = false;
-            //yAxis4.IsOppositeTic = false;
-            //yAxis4.IsMinorOppositeTic = false;
-            // Align the Y2 axis labels so they are flush to the axis
-            yAxis4.Scale.Align = AlignP.Inside;
-            yAxis4.Type = AxisType.Log;
-            //yAxis4.Min = 100;
-
-            // Fill the axis background with a gradient
-            _myPane.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
 
             //myPane.AxisChange( CreateGraphics() );
         }

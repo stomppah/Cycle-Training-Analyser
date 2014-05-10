@@ -60,36 +60,33 @@ namespace Analyser
 
         private void UpdateRecordedStats()
         {
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Speed))
+            if (FlagSet(Smode.Speed))
+            {
+                checkedSmodeList.SetItemChecked(0, true);
+            }
+            if (FlagSet(Smode.Cadence))
             {
                 checkedSmodeList.SetItemChecked(1, true);
             }
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Cadence))
+            if (FlagSet(Smode.Altitude))
             {
                 checkedSmodeList.SetItemChecked(2, true);
             }
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Altitude))
+            if (FlagSet(Smode.Power))
             {
                 checkedSmodeList.SetItemChecked(3, true);
             }
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Power))
+            if (FlagSet(Smode.Imperial))
             {
                 checkedSmodeList.SetItemChecked(4, true);
-            }
-            if (Extensions.IsFlagSet(_currentExerciseSession.CurrentSMode, Smode.Imperial))
-            {
-                checkedSmodeList.SetItemChecked(5, true);
             }
         }
 
         private void UpdateDataGrid()
         {
-
-            
-
             dataGridView1.AutoGenerateColumns = true;
 
-            for (int index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
+            for (var index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
                 var interval = new Interval();
                 interval.Time = _currentExerciseSession.TimeIntervalList[index];
@@ -162,14 +159,4 @@ namespace Analyser
 
     }
 
-    class Interval
-    {
-        public string Time { get; set; }
-        public string Bpm { get; set; }
-        public string Speed { get; set; }
-        public string Cadence { get; set; }
-        public string Altitude { get; set; }
-        public string Power { get; set; }
-        public string PowerBalance { get; set; }
-    }
 }

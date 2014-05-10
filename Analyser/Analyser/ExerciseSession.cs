@@ -11,7 +11,7 @@ namespace Analyser
     public class ExerciseSession
     {
         #region [Params]
-        public BindingList<string> TimeIntervalList = new BindingList<string>();
+        public BindingList<double> TimeIntervalList = new BindingList<double>();
         public BindingList<int> HeartRateList = new BindingList<int>();
         public BindingList<int> SpeedList = new BindingList<int>();
         public BindingList<int> CadenceList = new BindingList<int>();

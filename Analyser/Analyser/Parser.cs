@@ -99,7 +99,7 @@ namespace Analyser
         {
             if (line == null) throw new ArgumentNullException("line");
 
-            var timestamp = new DateTime();
+            double timestamp = 0.0;
 
             while ((line = file.ReadLine()) != null)
             {
@@ -114,11 +114,7 @@ namespace Analyser
                 }
 
                 
-                // how do i add known timespan seconds to datetime
-                var span = TimeSpan.Parse("0:00:0" + ExerciseSession.Interval.ToString(CultureInfo.InvariantCulture));
-                timestamp = timestamp + span;
-
-                ExerciseSession.TimeIntervalList.Add(timestamp.ToShortTimeString());
+                ExerciseSession.TimeIntervalList.Add(timestamp);
                 ExerciseSession.HeartRateList.Add(stats[0]);
                 
                 #region Massive switch statement
@@ -202,6 +198,7 @@ namespace Analyser
                 }
                 #endregion
 
+                timestamp += ExerciseSession.Interval;
             }
 
         }
