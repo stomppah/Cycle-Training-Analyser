@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Analyser
 {
-    class Interval
+    class ExerciseSessionInterval
     {
         public double Time { get; set; }
         public string Bpm { get; set; }
