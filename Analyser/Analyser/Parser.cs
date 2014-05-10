@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -74,7 +73,7 @@ namespace Analyser
             return ExerciseSession;
         }
 
-        private static List<string> GetParamsList(string line, StreamReader file)
+        private static List<string> GetParamsList(string line, TextReader file)
         {
             if (line == null) throw new ArgumentNullException("line");
 
@@ -94,7 +93,7 @@ namespace Analyser
             return paramsList;
         }
 
-        private void ReadCoreData(string line, StreamReader file)
+        private void ReadCoreData(string line, TextReader file)
         {
             if (line == null) throw new ArgumentNullException("line");
 
