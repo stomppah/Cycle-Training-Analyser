@@ -53,6 +53,7 @@
     <Compile Include="FileManager.cs" />
     <Compile Include="Grapher.cs" />
     <Compile Include="ExerciseSession.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
