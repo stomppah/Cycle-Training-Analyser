@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Analyser.Utilities
+namespace Analyser
 {
     /// <summary>
     /// Responsible for displaying runtime information.

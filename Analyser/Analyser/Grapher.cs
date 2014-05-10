@@ -1,6 +1,4 @@
 ﻿using System;
-using Analyser.Annotations;
-using Analyser.Utilities;
 using System.Drawing;
 using ZedGraph;
 

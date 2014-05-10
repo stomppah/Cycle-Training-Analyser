@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
-using Analyser.Utilities;
 using System.Collections.Generic;
 
 namespace Analyser
@@ -9,7 +8,7 @@ namespace Analyser
     public partial class MainForm : Form
     {
         private ExerciseSession _currentExerciseSession = new ExerciseSession();
-        private List<Interval> intervals = new List<Interval>();
+        private List<ExerciseSessionInterval> intervals = new List<ExerciseSessionInterval>();
 
         public MainForm()
         {
@@ -88,7 +87,7 @@ namespace Analyser
 
             for (var index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
-                var interval = new Interval();
+                var interval = new ExerciseSessionInterval();
                 interval.Time = _currentExerciseSession.TimeIntervalList[index];
                 interval.Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture);
                 interval.Speed = FlagSet(Smode.Speed)
