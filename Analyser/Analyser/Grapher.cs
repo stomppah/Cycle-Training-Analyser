@@ -15,7 +15,7 @@ namespace Analyser
             _bpmPointPairList,
             _cadencePointPairList,
             _powerPointPairList,
-            SpeedPointPairList,
+            _speedPointPairList,
             _powerBalancePointPairList;
 
         public static void UpdateGraph(ref ZedGraphControl zedGraphControl, ref ExerciseSession exerciseSession)
@@ -40,7 +40,7 @@ namespace Analyser
         private static void GenerateLists()
         {
             _bpmPointPairList = new PointPairList();
-            SpeedPointPairList = new PointPairList();
+            _speedPointPairList = new PointPairList();
             _cadencePointPairList = new PointPairList();
             _altitudePointPairList = new PointPairList();
             _powerPointPairList = new PointPairList();
@@ -50,11 +50,12 @@ namespace Analyser
             {
                 double time = (double) index;
                 _bpmPointPairList.Add(time, _exerciseSession.HeartRateList[index]);
-                SpeedPointPairList.Add(time, _exerciseSession.SpeedList[index]);
-                _cadencePointPairList.Add(time, _exerciseSession.CadenceList[index]);
-                _altitudePointPairList.Add(time, _exerciseSession.AltitudeList[index]);
-                _powerPointPairList.Add(time, _exerciseSession.PowerList[index]);
-                _powerBalancePointPairList.Add(time, _exerciseSession.PowerBalanceList[index]);
+                
+                if (_speedPointPairList.Count != 0) _speedPointPairList.Add(time, _exerciseSession.SpeedList[index]);
+                if (_cadencePointPairList.Count != 0) _cadencePointPairList.Add(time, _exerciseSession.CadenceList[index]);
+                if (_altitudePointPairList.Count != 0) _altitudePointPairList.Add(time, _exerciseSession.AltitudeList[index]);
+                if (_powerPointPairList.Count != 0) _powerPointPairList.Add(time, _exerciseSession.PowerList[index]);
+                if (_powerBalancePointPairList.Count != 0) _powerBalancePointPairList.Add(time, _exerciseSession.PowerBalanceList[index]);
             }
         }
 
@@ -83,7 +84,7 @@ namespace Analyser
 
             // Generate a blue curve with circle symbols, and "Acceleration" in the legend
             myCurve = _myPane.AddCurve("Speed",
-               SpeedPointPairList, Color.Blue, SymbolType.HDash);
+               _speedPointPairList, Color.Blue, SymbolType.HDash);
             // Fill the symbols with white
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
