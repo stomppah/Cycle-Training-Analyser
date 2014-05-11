@@ -76,14 +76,52 @@ namespace Analyser
         }
         #endregion
 
-        public Smode CurrentSMode { get { return Flags; } }
+        public Smode CurrentSMode
+        {
+            get
+            {
+                return Flags;
+            }
+        }
 
-        public double AverageBpm { get { return HeartRateList.Sum() / HeartRateList.Count; } }
+        public double AverageBpm
+        {
+            get
+            {
+                return HeartRateList.Sum() / HeartRateList.Count;
+            }
+        }
 
-        public double AverageSpeed { get { return SpeedList.Count > 0 ? SpeedList.Sum()/SpeedList.Count : 0; } }
+        public double AverageSpeed
+        {
+            get
+            {
+                return Extensions.IsFlagSet(CurrentSMode, Smode.Speed) ? SpeedList.Sum()/SpeedList.Count : 0;
+            }
+        }
 
-        public double AverageAltitude { get { return AltitudeList.Count > 0 ? AltitudeList.Sum()/AltitudeList.Count : 0; } }
+        public double AverageCadence
+        {
+            get
+            {
+                return Extensions.IsFlagSet(CurrentSMode, Smode.Cadence) ? CadenceList.Sum()/CadenceList.Count : 0;
+            }
+        }
 
-        public double AveragePower { get { return PowerList.Count > 0 ? PowerList.Sum()/PowerList.Count : 0; } }
+        public double AverageAltitude
+        {
+            get
+            {
+                return Extensions.IsFlagSet(CurrentSMode, Smode.Altitude) ? AltitudeList.Sum()/AltitudeList.Count : 0;
+            }
+        }
+
+        public double AveragePower
+        {
+            get
+            {
+                return Extensions.IsFlagSet(CurrentSMode, Smode.Power) ? PowerList.Sum()/PowerList.Count : 0;
+            }
+        }
     }
 }
