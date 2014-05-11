@@ -40,7 +40,6 @@ namespace Analyser
 
         private void UpdateSummaryInfo()
         {
-            nameLabel.Text = "Duncan Mullier";
             dateLabel.Text = _currentExerciseSession.Date.ToLongDateString();
             timeLabel.Text = _currentExerciseSession.StartTime.ToLongTimeString();
             durationLabel.Text = _currentExerciseSession.Length.ToLongTimeString();
@@ -155,6 +154,12 @@ namespace Analyser
             Grapher.UpdateGraph(ref zedGraphControl1, ref _currentExerciseSession);
         }
         #endregion
+
+        private void exerciseDataPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
     }
 
