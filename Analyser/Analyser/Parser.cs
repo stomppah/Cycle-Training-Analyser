@@ -190,8 +190,6 @@ namespace Analyser
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerBalance))
                             ExerciseSession.PowerBalanceList.Add(stats[5]);
 
-                        //if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.PowerIndex))
-                        
                         break;
                 }
                 #endregion
