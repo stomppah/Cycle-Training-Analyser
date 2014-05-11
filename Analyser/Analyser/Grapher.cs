@@ -79,9 +79,9 @@ namespace Analyser
             _myPane.YAxis.Title.Text = "HR [bpm]";
             _myPane.Y2Axis.Title.Text = "Speed [m/s]";
 
-            setupAltitudeAxis();
+            SetupAltitudeAxis();
 
-            setupCadenceAxis();
+            SetupCadenceAxis();
 
             // Make the Y axis scale red
             _myPane.YAxis.Scale.FontSpec.FontColor = Color.Red;
@@ -93,22 +93,16 @@ namespace Analyser
             //myPane.YAxis.IsZeroLine = false;
             // Align the Y axis labels so they are flush to the axis
             _myPane.YAxis.Scale.Align = AlignP.Inside;
-            //myPane.YAxis.Max = 100;
 
             // Enable the Y2 axis display
             _myPane.Y2Axis.IsVisible = Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Speed);
             // Make the Y2 axis scale blue
             _myPane.Y2Axis.Scale.FontSpec.FontColor = Color.Blue;
             _myPane.Y2Axis.Title.FontSpec.FontColor = Color.Blue;
-            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
-            //myPane.Y2Axis.IsOppositeTic = false;
-            //myPane.Y2Axis.IsMinorOppositeTic = false;
-            // Display the Y2 axis grid lines
-            //myPane.Y2Axis.IsShowGrid = true;
+
             // Align the Y2 axis labels so they are flush to the axis
             _myPane.Y2Axis.Scale.Align = AlignP.Inside;
-            //myPane.Y2Axis.Min = 1.5;
-            //myPane.Y2Axis.Max = 3;
+
 
             // Fill the axis background with a gradient
             _myPane.Fill = new Fill(Color.White, Color.LightGoldenrodYellow, 45.0f);
@@ -117,68 +111,52 @@ namespace Analyser
             GenerateExample();
         }
 
-        private static void setupAltitudeAxis()
+        private static void SetupAltitudeAxis()
         {
-// Create a second Y Axis, green
-            YAxis yAxis3 = new YAxis("Altitude [m]");
+            // Create a second Y Axis, green
+            var yAxis3 = new YAxis("Altitude [m]");
             yAxis3.IsVisible = Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Altitude);
             _myPane.YAxisList.Add(yAxis3);
             yAxis3.Scale.FontSpec.FontColor = Color.Green;
             yAxis3.Title.FontSpec.FontColor = Color.Green;
             yAxis3.Color = Color.Green;
-            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
-            yAxis3.IsAxisSegmentVisible = false; // IsInsideTic = false;
-            //yAxis3.IsMinorInsideTic = false;
-            //yAxis3.IsOppositeTic = false;
-            //yAxis3.IsMinorOppositeTic = false;
+            yAxis3.IsAxisSegmentVisible = false;
+
             // Align the Y2 axis labels so they are flush to the axis
             yAxis3.Scale.Align = AlignP.Inside;
         }
 
-        private static void setupCadenceAxis()
+        private static void SetupCadenceAxis()
         {
-            Y2Axis yAxis4 = new Y2Axis("Cadence [rpm]");
+            var yAxis4 = new Y2Axis("Cadence [rpm]");
             yAxis4.IsVisible = Extensions.IsFlagSet(_exerciseSession.CurrentSMode, Smode.Cadence);
             _myPane.Y2AxisList.Add(yAxis4);
-            // turn off the opposite tics so the Y2 tics don't show up on the Y axis
-            //yAxis4.IsInsideTic = false;
-            //yAxis4.IsMinorInsideTic = false;
-            //yAxis4.IsOppositeTic = false;
-            //yAxis4.IsMinorOppositeTic = false;
+            
             // Align the Y2 axis labels so they are flush to the axis
             yAxis4.Scale.Align = AlignP.Inside;
             yAxis4.Type = AxisType.Log;
-            //yAxis4.Min = 100;
         }
 
         private static void GenerateExample()
         {
-            // Generate a red curve with diamond symbols, and "Velocity" in the legend
-            var myCurve = _myPane.AddCurve("HR",
-              HrPlotList, Color.Red, SymbolType.XCross);
-            // Fill the symbols with white
+            // Generate a red curve with cross symbols, and "HR" in the legend
+            var myCurve = _myPane.AddCurve("HR", HrPlotList, Color.Red, SymbolType.XCross);
             myCurve.Symbol.Fill = new Fill(Color.White);
 
-            // Generate a blue curve with circle symbols, and "Acceleration" in the legend
-            myCurve = _myPane.AddCurve("Speed",
-               SpeedPlotList, Color.Blue, SymbolType.Default);
-            // Fill the symbols with white
+            // Generate a blue curve with default symbols, and "Speed" in the legend
+            myCurve = _myPane.AddCurve("Speed", SpeedPlotList, Color.Blue, SymbolType.Default);
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
             myCurve.IsY2Axis = true;
 
-            // Generate a green curve with square symbols, and "Distance" in the legend
-            myCurve = _myPane.AddCurve("Altitude",
-               AltitudePlotList, Color.Green, SymbolType.None);
-            // Fill the symbols with white
+            // Generate a green curve with square symbols, and "Altitude" in the legend
+            myCurve = _myPane.AddCurve("Altitude", AltitudePlotList, Color.Green, SymbolType.None);
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the second Y axis
             myCurve.YAxisIndex = 1;
 
-            // Generate a Black curve with triangle symbols, and "Energy" in the legend
-            myCurve = _myPane.AddCurve("Cadence",
-               CadencePlotList, Color.Black, SymbolType.Triangle);
-            // Fill the symbols with white
+            // Generate a Black curve with triangle symbols, and "Cadence" in the legend
+            myCurve = _myPane.AddCurve("Cadence", CadencePlotList, Color.Black, SymbolType.Triangle);
             myCurve.Symbol.Fill = new Fill(Color.White);
             // Associate this curve with the Y2 axis
             myCurve.IsY2Axis = true;
@@ -188,7 +166,6 @@ namespace Analyser
             // Show the x axis grid
             _myPane.XAxis.IsVisible = true;
 
-            //myPane.AxisChange( CreateGraphics() );
         }
     }
 }
