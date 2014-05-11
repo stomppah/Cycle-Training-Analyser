@@ -47,6 +47,7 @@ namespace Analyser
             maxSpeedLabel.Text = _currentExerciseSession.MaxSpeed.ToString(CultureInfo.InvariantCulture) + " km/h";
 
             averageAltitudeLabel.Text = _currentExerciseSession.AverageAltitude.ToString(CultureInfo.InvariantCulture) + " m";
+            maxAltitudeLabel.Text = _currentExerciseSession.MinAltitude.ToString(CultureInfo.InvariantCulture) + " m";
             
             averagePowerLabel.Text = _currentExerciseSession.AveragePower.ToString(CultureInfo.InvariantCulture) + " Watts";
             maxPowerLabel.Text = _currentExerciseSession.MaxPower.ToString(CultureInfo.InvariantCulture) + " Watts";
@@ -142,12 +143,6 @@ namespace Analyser
             Grapher.UpdateGraph(ref zedGraphControl1, ref _currentExerciseSession);
         }
         #endregion
-
-        private void exerciseDataPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
 
     }
 

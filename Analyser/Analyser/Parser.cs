@@ -105,10 +105,10 @@ namespace Analyser
                 var tempResults = Regex.Split(line, "\\s+");
 
                 //convert it to Int32 format
-                var stats = new Int32[tempResults.Length];
+                var stats = new double[tempResults.Length];
                 for (var i = 0; i < tempResults.Length; i++)
                 {
-                    Int32.TryParse(tempResults[i], out stats[i]);
+                    double.TryParse(tempResults[i], out stats[i]);
                 }
 
                 
@@ -120,7 +120,7 @@ namespace Analyser
                 {
                     case 2: 
                         if(Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
-                            ExerciseSession.SpeedList.Add(stats[1]);
+                            ExerciseSession.SpeedList.Add(stats[1] / 10);
 
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[1]);
@@ -134,7 +134,7 @@ namespace Analyser
                         break;
                     case 3:
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
-                           ExerciseSession.SpeedList.Add(stats[1]);
+                            ExerciseSession.SpeedList.Add(stats[1] / 10);
 
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -148,7 +148,7 @@ namespace Analyser
                         break;
                     case 4:
                         if(Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
-                           ExerciseSession.SpeedList.Add(stats[1]);
+                            ExerciseSession.SpeedList.Add(stats[1] / 10);
 
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -162,7 +162,7 @@ namespace Analyser
                         break;
                     case 5:
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
-                            ExerciseSession.SpeedList.Add(stats[1]);
+                            ExerciseSession.SpeedList.Add(stats[1] / 10);
 
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
@@ -176,7 +176,7 @@ namespace Analyser
                         break;
                     case 6:
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Speed))
-                            ExerciseSession.SpeedList.Add(stats[1]);
+                            ExerciseSession.SpeedList.Add(stats[1] / 10);
 
                         if (Extensions.IsFlagSet(ExerciseSession.CurrentSMode, Smode.Cadence))
                             ExerciseSession.CadenceList.Add(stats[2]);
