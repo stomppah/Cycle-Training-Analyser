@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System;
 using System.ComponentModel;
 
@@ -8,12 +9,12 @@ namespace Analyser
     {
         #region [Params]
         public BindingList<double> TimeIntervalList = new BindingList<double>();
-        public BindingList<int> HeartRateList = new BindingList<int>();
-        public BindingList<int> SpeedList = new BindingList<int>();
-        public BindingList<int> CadenceList = new BindingList<int>();
-        public BindingList<int> AltitudeList = new BindingList<int>();
-        public BindingList<int> PowerList = new BindingList<int>();
-        public BindingList<int> PowerBalanceList = new BindingList<int>();
+        public BindingList<double> HeartRateList = new BindingList<double>();
+        public BindingList<double> SpeedList = new BindingList<double>();
+        public BindingList<double> CadenceList = new BindingList<double>();
+        public BindingList<double> AltitudeList = new BindingList<double>();
+        public BindingList<double> PowerList = new BindingList<double>();
+        public BindingList<double> PowerBalanceList = new BindingList<double>();
         public Smode Flags;
         public int 
             Version, 
@@ -38,7 +39,7 @@ namespace Analyser
         #region Contructors
         public ExerciseSession() { }
 
-        public ExerciseSession(string[] paramsList)
+        public ExerciseSession(IList<string> paramsList)
         {
             #region Extract data 
             Int32.TryParse(paramsList[0], out Version);
@@ -78,50 +79,89 @@ namespace Analyser
 
         public Smode CurrentSMode
         {
-            get
-            {
-                return Flags;
-            }
+            get { return Flags; }
         }
 
+        #region Average Properties
         public double AverageBpm
         {
-            get
-            {
-                return HeartRateList.Sum() / HeartRateList.Count;
-            }
+            get { return Math.Round((HeartRateList.Sum()/HeartRateList.Count), 2); }
         }
 
         public double AverageSpeed
         {
-            get
-            {
-                return Extensions.IsFlagSet(CurrentSMode, Smode.Speed) ? SpeedList.Sum()/SpeedList.Count : 0;
-            }
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Speed) ? Math.Round((SpeedList.Sum()/SpeedList.Count), 2) : 0; }
         }
 
         public double AverageCadence
         {
-            get
-            {
-                return Extensions.IsFlagSet(CurrentSMode, Smode.Cadence) ? CadenceList.Sum()/CadenceList.Count : 0;
-            }
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Cadence) ? Math.Round((CadenceList.Sum()/CadenceList.Count), 2) : 0; }
         }
 
         public double AverageAltitude
         {
-            get
-            {
-                return Extensions.IsFlagSet(CurrentSMode, Smode.Altitude) ? AltitudeList.Sum()/AltitudeList.Count : 0;
-            }
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Altitude) ? Math.Round((AltitudeList.Sum()/AltitudeList.Count), 2) : 0; }
         }
 
         public double AveragePower
         {
-            get
-            {
-                return Extensions.IsFlagSet(CurrentSMode, Smode.Power) ? PowerList.Sum()/PowerList.Count : 0;
-            }
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Power) ? Math.Round((PowerList.Sum()/PowerList.Count), 2) : 0; }
         }
+        #endregion
+
+        #region Max Properties
+        public double MaxBpm
+        {
+            get { return HeartRateList.Max(); }
+        }
+
+        public double MaxSpeed
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Speed) ? SpeedList.Max() : 0; }
+        }
+
+        public double MaxCadence
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Cadence) ? CadenceList.Max() : 0; }
+        }
+
+        public double MaxAltitude
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Altitude) ? AltitudeList.Max() : 0; }
+        }
+
+        public double MaxPower
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Power) ? PowerList.Max() : 0; }
+        }
+
+        #endregion
+
+        #region Min Properties
+        public double MinBpm
+        {
+            get { return HeartRateList.Min(); }
+        }
+
+        public double MinSpeed
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Speed) ? SpeedList.Min() : 0; }
+        }
+
+        public double MinCadence
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Cadence) ? CadenceList.Min() : 0; }
+        }
+
+        public double MinAltitude
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Altitude) ? AltitudeList.Min() : 0; }
+        }
+
+        public double MinPower
+        {
+            get { return Extensions.IsFlagSet(CurrentSMode, Smode.Power) ? PowerList.Min() : 0; }
+        }
+        #endregion
     }
 }

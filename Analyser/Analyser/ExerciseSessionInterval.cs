@@ -3,11 +3,11 @@
     class ExerciseSessionInterval
     {
         public double Time { get; set; }
-        public string Bpm { get; set; }
-        public string Speed { get; set; }
-        public string Cadence { get; set; }
-        public string Altitude { get; set; }
-        public string Power { get; set; }
-        public string PowerBalance { get; set; }
+        public double Bpm { get; set; }
+        public double Speed { get; set; }
+        public double Cadence { get; set; }
+        public double Altitude { get; set; }
+        public double Power { get; set; }
+        public double PowerBalance { get; set; }
     }
 }

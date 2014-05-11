@@ -45,7 +45,7 @@
             this.maxPowerLabel = new System.Windows.Forms.Label();
             this.averagePowerLabel = new System.Windows.Forms.Label();
             this.durationLabel = new System.Windows.Forms.Label();
-            this.MaxHeartRateLabel = new System.Windows.Forms.Label();
+            this.maxHeartRateLabel = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
             this.minHeartRateLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
@@ -111,7 +111,7 @@
             this.exerciseDataPanel.Controls.Add(this.maxPowerLabel);
             this.exerciseDataPanel.Controls.Add(this.averagePowerLabel);
             this.exerciseDataPanel.Controls.Add(this.durationLabel);
-            this.exerciseDataPanel.Controls.Add(this.MaxHeartRateLabel);
+            this.exerciseDataPanel.Controls.Add(this.maxHeartRateLabel);
             this.exerciseDataPanel.Controls.Add(this.timeLabel);
             this.exerciseDataPanel.Controls.Add(this.minHeartRateLabel);
             this.exerciseDataPanel.Controls.Add(this.dateLabel);
@@ -272,16 +272,16 @@
             this.durationLabel.Size = new System.Drawing.Size(0, 13);
             this.durationLabel.TabIndex = 21;
             // 
-            // MaxHeartRateLabel
+            // maxHeartRateLabel
             // 
-            this.MaxHeartRateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.MaxHeartRateLabel.AutoSize = true;
-            this.MaxHeartRateLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.MaxHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.MaxHeartRateLabel.Location = new System.Drawing.Point(477, 638);
-            this.MaxHeartRateLabel.Name = "MaxHeartRateLabel";
-            this.MaxHeartRateLabel.Size = new System.Drawing.Size(0, 13);
-            this.MaxHeartRateLabel.TabIndex = 27;
+            this.maxHeartRateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.maxHeartRateLabel.AutoSize = true;
+            this.maxHeartRateLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.maxHeartRateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.maxHeartRateLabel.Location = new System.Drawing.Point(477, 638);
+            this.maxHeartRateLabel.Name = "maxHeartRateLabel";
+            this.maxHeartRateLabel.Size = new System.Drawing.Size(0, 13);
+            this.maxHeartRateLabel.TabIndex = 27;
             // 
             // timeLabel
             // 
@@ -545,7 +545,7 @@
         private System.Windows.Forms.Label averageAltitudeLabel;
         private System.Windows.Forms.Label maxPowerLabel;
         private System.Windows.Forms.Label averagePowerLabel;
-        private System.Windows.Forms.Label MaxHeartRateLabel;
+        private System.Windows.Forms.Label maxHeartRateLabel;
         private System.Windows.Forms.Label minHeartRateLabel;
         private System.Windows.Forms.Label averageHeartRateLabel;
         private System.Windows.Forms.Label maxSpeedLabel;

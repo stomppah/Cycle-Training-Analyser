@@ -8,7 +8,7 @@ namespace Analyser
     public partial class MainForm : Form
     {
         private ExerciseSession _currentExerciseSession = new ExerciseSession();
-        private List<ExerciseSessionInterval> intervals = new List<ExerciseSessionInterval>();
+        private readonly List<ExerciseSessionInterval> _intervals = new List<ExerciseSessionInterval>();
 
         public MainForm()
         {
@@ -19,11 +19,6 @@ namespace Analyser
         {
             _currentExerciseSession = FileManager.LoadFile(OpenFileDialog);
             UpdateGui();
-        }
-
-        private void generateGraphButton_Click(object sender, EventArgs e)
-        {
-            UpdateGraph();
         }
 
         #region Update GUI
@@ -44,16 +39,17 @@ namespace Analyser
             timeLabel.Text = _currentExerciseSession.StartTime.ToLongTimeString();
             durationLabel.Text = _currentExerciseSession.Length.ToLongTimeString();
 
-            int maxHr = _currentExerciseSession.MaxHr;
-            int minHr = _currentExerciseSession.RestHr;
-
-            MaxHeartRateLabel.Text = maxHr.ToString(CultureInfo.InvariantCulture);
-            minHeartRateLabel.Text = minHr.ToString(CultureInfo.InvariantCulture);
-
             averageHeartRateLabel.Text = _currentExerciseSession.AverageBpm.ToString(CultureInfo.InvariantCulture) + " bpm";
+            maxHeartRateLabel.Text = _currentExerciseSession.MaxBpm.ToString(CultureInfo.InvariantCulture) +" bpm";
+            minHeartRateLabel.Text = _currentExerciseSession.MinBpm.ToString(CultureInfo.InvariantCulture) + " bpm";
+
             averageSpeedLabel.Text = _currentExerciseSession.AverageSpeed.ToString(CultureInfo.InvariantCulture) + " km/h";
+            maxSpeedLabel.Text = _currentExerciseSession.MaxSpeed.ToString(CultureInfo.InvariantCulture) + " km/h";
+
             averageAltitudeLabel.Text = _currentExerciseSession.AverageAltitude.ToString(CultureInfo.InvariantCulture) + " m";
+            
             averagePowerLabel.Text = _currentExerciseSession.AveragePower.ToString(CultureInfo.InvariantCulture) + " Watts";
+            maxPowerLabel.Text = _currentExerciseSession.MaxPower.ToString(CultureInfo.InvariantCulture) + " Watts";
         }
 
         private void UpdateRecordedStats()
@@ -86,28 +82,20 @@ namespace Analyser
 
             for (var index = 0; index < _currentExerciseSession.HeartRateList.Count; index++)
             {
-                var interval = new ExerciseSessionInterval();
-                interval.Time = _currentExerciseSession.TimeIntervalList[index];
-                interval.Bpm = _currentExerciseSession.HeartRateList[index].ToString(CultureInfo.InvariantCulture);
-                interval.Speed = FlagSet(Smode.Speed)
-                    ? _currentExerciseSession.SpeedList[index].ToString(CultureInfo.InvariantCulture)
-                    : "-";
-                interval.Cadence = FlagSet(Smode.Cadence)
-                    ? _currentExerciseSession.CadenceList[index].ToString(CultureInfo.InvariantCulture)
-                    : "-";
-                interval.Altitude = FlagSet(Smode.Altitude)
-                    ? _currentExerciseSession.AltitudeList[index].ToString(CultureInfo.InvariantCulture)
-                    : "-";
-                interval.Power = FlagSet(Smode.Power)
-                    ? _currentExerciseSession.PowerList[index].ToString(CultureInfo.InvariantCulture)
-                    : "-";
-                interval.PowerBalance = FlagSet(Smode.PowerBalance)
-                    ? _currentExerciseSession.PowerBalanceList[index].ToString(CultureInfo.InvariantCulture)
-                    : "-";
-                intervals.Add(interval);
+                var interval = new ExerciseSessionInterval
+                {
+                    Time = _currentExerciseSession.TimeIntervalList[index],
+                    Bpm = _currentExerciseSession.HeartRateList[index],
+                    Speed = FlagSet(Smode.Speed) ? _currentExerciseSession.SpeedList[index] : 0,
+                    Cadence = FlagSet(Smode.Cadence) ? _currentExerciseSession.CadenceList[index] : 0,
+                    Altitude = FlagSet(Smode.Altitude) ? _currentExerciseSession.AltitudeList[index] : 0,
+                    Power = FlagSet(Smode.Power) ? _currentExerciseSession.PowerList[index] : 0,
+                    PowerBalance = FlagSet(Smode.PowerBalance) ? _currentExerciseSession.PowerBalanceList[index] : 0
+                };
+                _intervals.Add(interval);
             }
             
-            dataGridView1.DataSource = intervals;
+            dataGridView1.DataSource = _intervals;
 
             SetupColumns();
         }
