@@ -12,10 +12,10 @@ namespace Analyser
         internal static ExerciseSession LoadFile(OpenFileDialog openFileDialog1)
         {
             var tempExerciseSession = new ExerciseSession();
-            openFileDialog1.Title = Resources.FileManager_LoadFile_Load_cycle_training_data_;
+            openFileDialog1.Title = "Load cycle training data.";
             openFileDialog1.FileName = "";
 
-            openFileDialog1.Filter = Resources.FileManager_LoadFile_HRM_Files___hrm;
+            openFileDialog1.Filter = "HRM Files|*.hrm"; 
 
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
